@@ -72,8 +72,8 @@ import { useI18n } from 'vue-i18n'
 import { OlProgressBar } from '@gamesite/game-core'
 const chips = new URL("../assets/bonus-shop-chips.svg", import.meta.url).href;
 const cart = new URL("../assets/cart-new-animated.svg", import.meta.url).href;
-const chestStill = new URL("../assets/chest-open.webp", import.meta.url).href;
-const chest = new URL("../assets/chest-opening-once.svg", import.meta.url).href;
+const chestStill = new URL("../assets/chest-open-glow.svg", import.meta.url).href;
+const chest = new URL("../assets/chest-opening-central-glow.svg", import.meta.url).href;
 const chevronRight = new URL("../assets/chevron-right.svg", import.meta.url).href;
 const freeSpinsCoin = new URL("../assets/free-spins-coin.svg", import.meta.url).href;
 const wideLettering = new URL("../assets/free-spins-lettering-wide.svg", import.meta.url).href;
