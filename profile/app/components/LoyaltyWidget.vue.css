@@ -240,10 +240,43 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
 .loyalty-widget__cart img {
   max-width: none;
 }
-.loyalty-widget__cart_chest img {
+.loyalty-widget {
   /* ds-custom:shop-animation */
+}
+.loyalty-widget__chest {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: max-content;
+  aspect-ratio: 1;
+  overflow: hidden;
   transform: translate(var(--gap-lg), calc(-1 * var(--size-4xl))) scale(0.37);
   transform-origin: top left;
+}
+.loyalty-widget__chest-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  opacity: 0;
+}
+.loyalty-widget__chest-frames[data-ready] {
+  animation: loyalty-chest-open 600ms steps(8, end) both;
+}
+.loyalty-widget__chest-frames[data-ready] + .loyalty-widget__chest-glow {
+  animation: loyalty-chest-glow 400ms linear 600ms both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .loyalty-widget__chest-frames, .loyalty-widget__chest-frames[data-ready] {
+    animation: none;
+    transform: translateY(-88.8888888889%);
+  }
+  .loyalty-widget__chest-frames[data-ready] + .loyalty-widget__chest-glow {
+    animation: none;
+    opacity: 1;
+  }
+}
+.loyalty-widget {
   /* /ds-custom */
 }
 .loyalty-widget__hint {
@@ -270,6 +303,18 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
   overflow-wrap: anywhere;
 }
 
+/* ds-custom:shop-animation */
+@keyframes loyalty-chest-open {
+  to {
+    transform: translateY(-88.8888888889%);
+  }
+}
+@keyframes loyalty-chest-glow {
+  to {
+    opacity: 1;
+  }
+}
+/* /ds-custom */
 /* ds-custom:hint-transition */
 .loyalty-widget__hint-text {
   opacity: 0;

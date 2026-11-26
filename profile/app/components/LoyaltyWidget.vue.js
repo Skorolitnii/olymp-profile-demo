@@ -1,4 +1,4 @@
-import { unref as _unref, createElementVNode as _createElementVNode, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, Fragment as _Fragment, normalizeClass as _normalizeClass, renderList as _renderList } from "vue"
+import { unref as _unref, createElementVNode as _createElementVNode, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, Fragment as _Fragment, renderList as _renderList, normalizeClass as _normalizeClass } from "vue"
 
 const _hoisted_1 = ["data-version", "aria-label"]
 const _hoisted_2 = {
@@ -56,24 +56,35 @@ const _hoisted_30 = ["src"]
 const _hoisted_31 = { class: "loyalty-widget__label text-label-xs" }
 const _hoisted_32 = { class: "loyalty-widget__value text-header-xs" }
 const _hoisted_33 = ["src", "alt"]
-const _hoisted_34 = ["srcset"]
-const _hoisted_35 = ["src"]
-const _hoisted_36 = {
+const _hoisted_34 = {
+  class: "loyalty-widget__cart",
+  "data-name": "shop-animation",
+  "data-ds-custom": "shop-animation",
+  "aria-hidden": "true"
+}
+const _hoisted_35 = {
+  key: 0,
+  class: "loyalty-widget__chest"
+}
+const _hoisted_36 = ["src"]
+const _hoisted_37 = ["src"]
+const _hoisted_38 = ["src"]
+const _hoisted_39 = {
   class: "loyalty-widget__hint text-label-xs",
   "data-name": "loyalty-hint",
   "data-ds-new": "loyalty-hint",
   "data-ds-custom": "hint-transition"
 }
-const _hoisted_37 = ["src"]
-const _hoisted_38 = ["aria-hidden"]
+const _hoisted_40 = ["src"]
+const _hoisted_41 = ["aria-hidden"]
 
 import { computed, onMounted, onUnmounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { OlProgressBar } from '@gamesite/game-core'
 const chips = new URL("../assets/bonus-shop-chips.svg", import.meta.url).href;
 const cart = new URL("../assets/cart-new-animated.svg", import.meta.url).href;
-const chestStill = new URL("../assets/chest-open-glow.svg", import.meta.url).href;
-const chest = new URL("../assets/chest-opening-central-glow.svg", import.meta.url).href;
+const chestFrames = new URL("../assets/chest-frames.webp", import.meta.url).href;
+const chestGlow = new URL("../assets/chest-glow.svg", import.meta.url).href;
 const chevronRight = new URL("../assets/chevron-right.svg", import.meta.url).href;
 const freeSpinsCoin = new URL("../assets/free-spins-coin.svg", import.meta.url).href;
 const wideLettering = new URL("../assets/free-spins-lettering-wide.svg", import.meta.url).href;
@@ -87,7 +98,7 @@ const olpCoin = new URL("../assets/olp-coin.svg", import.meta.url).href;
 const questArtwork = new URL("../assets/quest-artwork-transparent.png", import.meta.url).href;
 const temple = new URL("../assets/temple.png", import.meta.url).href;
 const topGlow = new URL("../assets/top-glow.svg", import.meta.url).href;
-import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=expanded-scroll";
+import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js";
 
 const hintIntervalMs = 5000
 
@@ -112,13 +123,23 @@ const shopAnimationAssets = new Map([
   ['cart', cart],
   ['chips', chips],
   ['gifts', gifts],
-  ['chest', chest],
 ])
 
 const shopAnimationSource = computed(() => {
   const asset = shopAnimationAssets.get(props.shopAnimation) ?? cart
   return `${asset}?play=${animationId}-${animationRun.value}`
 })
+
+async function startChestAnimation({ currentTarget: frames }) {
+  const glow = frames.nextElementSibling
+  await Promise.allSettled([frames.decode(), glow.decode()])
+  // Give the first decoded frame a paint before starting the timeline.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      frames.dataset.ready = ''
+    })
+  })
+}
 
 watch(
   () => props.shopAnimation,
@@ -294,44 +315,43 @@ return (_ctx, _cache) => {
               alt: _unref(t)('loyaltyWidget.balanceUnit')
             }, null, 8 /* PROPS */, _hoisted_33)
           ]),
-          _createElementVNode("span", {
-            class: _normalizeClass(["loyalty-widget__cart", { 'loyalty-widget__cart_chest': props.shopAnimation === 'chest' }]),
-            "data-name": "shop-animation",
-            "data-ds-custom": "shop-animation",
-            "aria-hidden": "true"
-          }, [
-            (_openBlock(), _createElementBlock("picture", {
-              key: props.shopAnimation
-            }, [
-              (props.shopAnimation === 'chest')
-                ? (_openBlock(), _createElementBlock("source", {
-                    key: 0,
-                    media: "(prefers-reduced-motion: reduce)",
-                    srcset: _unref(chestStill)
-                  }, null, 8 /* PROPS */, _hoisted_34))
-                : _createCommentVNode("v-if", true),
-              _createElementVNode("img", {
-                src: shopAnimationSource.value,
-                alt: ""
-              }, null, 8 /* PROPS */, _hoisted_35)
-            ]))
-          ], 2 /* CLASS */)
+          _createElementVNode("span", _hoisted_34, [
+            (props.shopAnimation === 'chest')
+              ? (_openBlock(), _createElementBlock("span", _hoisted_35, [
+                  _createElementVNode("img", {
+                    class: "loyalty-widget__chest-frames",
+                    src: _unref(chestFrames),
+                    alt: "",
+                    onLoad: startChestAnimation
+                  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_36),
+                  _createElementVNode("img", {
+                    class: "loyalty-widget__chest-glow",
+                    src: _unref(chestGlow),
+                    alt: ""
+                  }, null, 8 /* PROPS */, _hoisted_37)
+                ]))
+              : (_openBlock(), _createElementBlock("img", {
+                  key: props.shopAnimation,
+                  src: shopAnimationSource.value,
+                  alt: ""
+                }, null, 8 /* PROPS */, _hoisted_38))
+          ])
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"]))
     ]),
-    _createElementVNode("p", _hoisted_36, [
+    _createElementVNode("p", _hoisted_39, [
       _createElementVNode("img", {
         class: "loyalty-widget__hint-icon",
         src: _unref(hintIcon),
         alt: ""
-      }, null, 8 /* PROPS */, _hoisted_37),
+      }, null, 8 /* PROPS */, _hoisted_40),
       (_openBlock(), _createElementBlock(_Fragment, null, _renderList(hintKeys, (key, index) => {
         return _createElementVNode("span", {
           key: key,
           class: _normalizeClass(["loyalty-widget__hint-text", { 'loyalty-widget__hint-text_active': index === activeHintIndex.value }]),
           "aria-hidden": index !== activeHintIndex.value || undefined
-        }, _toDisplayString(_unref(t)(`loyaltyWidget.hints.${key}`)), 11 /* TEXT, CLASS, PROPS */, _hoisted_38)
+        }, _toDisplayString(_unref(t)(`loyaltyWidget.hints.${key}`)), 11 /* TEXT, CLASS, PROPS */, _hoisted_41)
       }), 64 /* STABLE_FRAGMENT */))
     ])
   ], 10 /* CLASS, PROPS */, _hoisted_1))

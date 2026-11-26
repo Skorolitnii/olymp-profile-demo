@@ -8,7 +8,7 @@ const _hoisted_1 = {
 const _hoisted_2 = { class: "loyalty-page__body" }
 
 import { onMounted, onUnmounted, ref } from 'vue'
-import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=chest-glow";
+import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=chest-frames";
 import ProfileBalance from "../components/ProfileBalance.vue.js";
 import ProfileMenu from "../components/ProfileMenu.vue.js";
 import ProfileNavbar from "../components/ProfileNavbar.vue.js";

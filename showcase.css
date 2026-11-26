@@ -93,7 +93,7 @@ body {
   justify-content: center;
   align-items: center;
   min-block-size: calc(80px - 2 * var(--gap-2xl));
-  gap: var(--gap-md);
+  gap: var(--gap-xs) var(--gap-md);
 }
 
 .shop-animation__label {
@@ -129,6 +129,22 @@ body {
 .shop-animation__option[aria-pressed="true"] {
   background: var(--color-background-interactive-fourth-selected);
   color: var(--color-background-button-primary-default);
+}
+
+.shop-animation__sizes {
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-2xs) var(--gap-lg);
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.shop-animation__sizes span {
+  white-space: nowrap;
 }
 
 .preview__mobile {
