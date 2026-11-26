@@ -33,16 +33,25 @@
 .loyalty-widget_expanded {
   gap: var(--gap-sm);
   border-radius: 0;
+  background-image: none;
 }
 .loyalty-widget_expanded .loyalty-widget__hint {
   margin-block-start: var(--gap-2xs);
 }
-.loyalty-widget_expanded .loyalty-widget__profile {
-  position: absolute;
-  top: 0;
-  inset-inline: var(--padding-sm);
-  opacity: 0;
-  visibility: hidden;
+.loyalty-widget__expanded {
+  position: relative;
+  z-index: 1;
+  margin-block-end: calc(-1 * var(--padding-xs));
+  margin-block-start: calc(-1 * var(--padding-xs));
+  margin-inline: calc(-1 * var(--padding-sm));
+  padding: var(--padding-xs) var(--padding-sm);
+  background-color: var(--color-background-page-lvl-1);
+  /* ds-custom:loyalty-glow */
+  background-image: linear-gradient(180deg, rgba(39, 64, 198, 0.48) 0%, transparent 72%);
+  /* /ds-custom */
+}
+.loyalty-widget__expanded .loyalty-widget__glow {
+  inset-block-start: calc(-1 * var(--gap-md));
 }
 .loyalty-widget_expanded .loyalty-widget__scene {
   inset-inline-end: calc(var(--layout-width) * -0.08602);

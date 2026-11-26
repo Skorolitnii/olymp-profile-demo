@@ -8,7 +8,7 @@ const _hoisted_1 = {
 const _hoisted_2 = { class: "loyalty-page__body" }
 
 import { onMounted, onUnmounted, ref } from 'vue'
-import LoyaltyWidget from "../components/LoyaltyWidget.vue.js";
+import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=expanded-scroll";
 import ProfileBalance from "../components/ProfileBalance.vue.js";
 import ProfileMenu from "../components/ProfileMenu.vue.js";
 import ProfileNavbar from "../components/ProfileNavbar.vue.js";
@@ -33,7 +33,6 @@ let scrollFrame = 0
 let headerObserver
 let profile
 let profileSurface
-let expandedProfile
 let disappearing
 let reduceMotion
 
@@ -45,11 +44,7 @@ function updateHeader() {
   const surface = profileStart ? Math.min(1, distance / profileStart) : 0
 
   profile.style.translate = `0 ${shift}px`
-  profileSurface.style.opacity = expandedProfile ? 1 : surface
-  if (expandedProfile) {
-    profile.style.opacity = Math.min(1, progress * 3)
-    profile.style.visibility = progress > 0 ? 'visible' : ''
-  }
+  if (profileSurface) profileSurface.style.opacity = surface
   for (const { element, fadeRate, movesUp } of disappearing) {
     element.style.opacity = Math.max(0, 1 - progress * fadeRate)
     if (movesUp) {
@@ -74,12 +69,11 @@ function measureHeader() {
 }
 
 onMounted(() => {
-  profile = header.value.querySelector('.loyalty-widget__profile')
+  profile = header.value.querySelector('.loyalty-widget__expanded, .loyalty-widget__profile')
   profileSurface = header.value.querySelector('.loyalty-widget__profile-surface')
-  expandedProfile = header.value.querySelector('.loyalty-expanded-profile')
   disappearing = [
-    { element: expandedProfile || header.value.querySelector('.loyalty-widget__program'), fadeRate: 3 },
-    { element: header.value.querySelector('.loyalty-widget__scene'), fadeRate: 3 },
+    { element: header.value.querySelector('.loyalty-widget__program'), fadeRate: 3 },
+    { element: header.value.querySelector('.loyalty-widget_wide .loyalty-widget__scene'), fadeRate: 3 },
     { element: header.value.querySelector('.loyalty-widget__menu'), fadeRate: 1.65, movesUp: true },
     { element: header.value.querySelector('.loyalty-widget__hint'), fadeRate: 1.15, movesUp: true },
   ].filter(({ element }) => element)

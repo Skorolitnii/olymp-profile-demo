@@ -89,7 +89,7 @@ return (_ctx, _cache) => {
       _createElementVNode("div", _hoisted_13, [
         _createVNode(_unref(OlProgressBar), {
           size: "sm",
-          value: 7.5,
+          value: 8.15,
           "left-value": "",
           "right-value": "",
           "aria-hidden": "true"
