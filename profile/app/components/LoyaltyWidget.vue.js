@@ -81,6 +81,7 @@ const chevronRight = new URL("../assets/chevron-right.svg", import.meta.url).hre
 const freeSpinsCoin = new URL("../assets/free-spins-coin.svg", import.meta.url).href;
 const wideLettering = new URL("../assets/free-spins-lettering-wide.svg", import.meta.url).href;
 const freeSpinsLettering = new URL("../assets/free-spins-lettering.svg", import.meta.url).href;
+const gifts = new URL("../assets/gifts-animated.svg", import.meta.url).href;
 const hintIcon = new URL("../assets/hint-icon.svg", import.meta.url).href;
 const levelAvatar = new URL("../assets/level-avatar.png", import.meta.url).href;
 const loyaltyLevel = new URL("../assets/loyalty-level.svg", import.meta.url).href;
@@ -110,9 +111,14 @@ const { t } = useI18n()
 const isExpanded = computed(() => props.version === 'v2' || props.version === 'v2.2')
 const animationId = useId()
 const animationRun = ref(0)
+const shopAnimationAssets = new Map([
+  ['cart', cart],
+  ['chips', chips],
+  ['gifts', gifts],
+])
 
 const shopAnimationSource = computed(() => {
-  const asset = props.shopAnimation === 'chips' ? chips : cart
+  const asset = shopAnimationAssets.get(props.shopAnimation) ?? cart
   return `${asset}?play=${animationId}-${animationRun.value}`
 })
 

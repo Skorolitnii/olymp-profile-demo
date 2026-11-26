@@ -8,7 +8,10 @@ const profileUrl = new URL(mobileLink.href)
 const profileOrigin = new URL(profileFrame.src).origin
 const requested = new URLSearchParams(location.search)
 let activeVersion = 'v1'
-let activeAnimation = requested.get('animation') === 'chips' ? 'chips' : 'cart'
+const requestedAnimation = requested.get('animation')
+let activeAnimation = animationOptions.some((option) => option.dataset.shopAnimation === requestedAnimation)
+  ? requestedAnimation
+  : 'cart'
 
 function syncPreview() {
   profileFrame.contentWindow?.postMessage({

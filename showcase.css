@@ -111,7 +111,7 @@ body {
 
 .shop-animation__option {
   min-block-size: var(--size-5xl);
-  padding-inline: var(--padding-sm);
+  padding-inline: var(--padding-xs);
   border: 0;
   border-radius: var(--border-radius-md);
   background: transparent;

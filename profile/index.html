@@ -31,13 +31,14 @@ try {
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
   setMessages((await import("./app/i18n/ru.js")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=cart-update")).default;
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=gifts-animation")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
-  const animations = new Set(['cart', 'chips']);
+  const animations = new Set(['cart', 'chips', 'gifts']);
   const params = new URLSearchParams(location.search);
   const requestedVersion = params.get('version');
   const version = shallowRef(versions.has(requestedVersion) ? requestedVersion : 'v1');
-  const shopAnimation = shallowRef(params.get('animation') === 'chips' ? 'chips' : 'cart');
+  const requestedAnimation = params.get('animation');
+  const shopAnimation = shallowRef(animations.has(requestedAnimation) ? requestedAnimation : 'cart');
   const app = createApp({ render: () => h(Entry, {
     key: version.value, version: version.value, shopAnimation: shopAnimation.value,
   }) });
