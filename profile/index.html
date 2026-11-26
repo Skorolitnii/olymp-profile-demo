@@ -31,7 +31,7 @@ try {
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
   setMessages((await import("./app/i18n/ru.js")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=quest-transparent")).default;
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=cart-update")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
   const animations = new Set(['cart', 'chips']);
   const params = new URLSearchParams(location.search);

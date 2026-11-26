@@ -72,11 +72,11 @@ const _hoisted_36 = {
 const _hoisted_37 = ["src"]
 const _hoisted_38 = ["aria-hidden"]
 
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { OlProgressBar } from '@gamesite/game-core'
 const chips = new URL("../assets/bonus-shop-chips.svg", import.meta.url).href;
-const cart = new URL("../assets/cart-animation.svg", import.meta.url).href;
+const cart = new URL("../assets/cart-new-animated.svg", import.meta.url).href;
 const chevronRight = new URL("../assets/chevron-right.svg", import.meta.url).href;
 const freeSpinsCoin = new URL("../assets/free-spins-coin.svg", import.meta.url).href;
 const wideLettering = new URL("../assets/free-spins-lettering-wide.svg", import.meta.url).href;
@@ -108,6 +108,21 @@ const props = __props
 
 const { t } = useI18n()
 const isExpanded = computed(() => props.version === 'v2' || props.version === 'v2.2')
+const animationId = useId()
+const animationRun = ref(0)
+
+const shopAnimationSource = computed(() => {
+  const asset = props.shopAnimation === 'chips' ? chips : cart
+  return `${asset}?play=${animationId}-${animationRun.value}`
+})
+
+watch(
+  () => props.shopAnimation,
+  () => {
+    // A fresh image URL restarts the SVG timeline instead of reusing its final frame.
+    animationRun.value += 1
+  },
+)
 
 const hintKeys = ['tasks', 'ranking', 'level', 'holiday', 'seasonalMap']
 const activeHintIndex = ref(0)
@@ -278,7 +293,7 @@ return (_ctx, _cache) => {
           _createElementVNode("span", _hoisted_34, [
             (_openBlock(), _createElementBlock("img", {
               key: props.shopAnimation,
-              src: props.shopAnimation === 'chips' ? _unref(chips) : _unref(cart),
+              src: shopAnimationSource.value,
               alt: ""
             }, null, 8 /* PROPS */, _hoisted_35))
           ])
