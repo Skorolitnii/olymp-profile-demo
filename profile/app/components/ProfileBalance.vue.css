@@ -1,0 +1,76 @@
+.profile-balance {
+  display: grid;
+  gap: var(--gap-2xl);
+}
+.profile-balance__main {
+  display: grid;
+  gap: var(--gap-xl);
+  padding: var(--padding-sm);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-background-interactive-fourth-default);
+  /* ds-custom:balance-glow */
+  background-image: radial-gradient(ellipse 74% 145% at 24% 24%, rgba(60, 84, 216, 0.32), transparent);
+  /* /ds-custom */
+}
+.profile-balance__summary, .profile-balance__cashback-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+}
+.profile-balance__summary, .profile-balance__action {
+  border-radius: var(--border-radius-sm);
+  color: inherit;
+  text-decoration: none;
+}
+.profile-balance__summary:focus-visible, .profile-balance__action:focus-visible {
+  outline: var(--border-width-sm) solid var(--color-border-interactive-focus);
+}
+.profile-balance__action {
+  display: grid;
+}
+.profile-balance__deposit-icon {
+  display: grid;
+  place-items: center;
+}
+.profile-balance__figures, .profile-balance__cashback, .profile-balance__cashback-figures {
+  display: grid;
+}
+.profile-balance__figures {
+  gap: var(--gap-xs);
+}
+.profile-balance__label, .profile-balance__cashback-label {
+  color: var(--color-text-tertiary);
+}
+.profile-balance__icon {
+  display: grid;
+  flex: 0 0 var(--size-icon-md);
+  place-items: center;
+  width: var(--size-icon-md);
+  aspect-ratio: 1;
+}
+.profile-balance__amount, .profile-balance__cashback-content, .profile-balance__cashback-label {
+  display: flex;
+  align-items: center;
+}
+.profile-balance__amount {
+  gap: var(--gap-xs);
+  white-space: nowrap;
+}
+.profile-balance__cashback {
+  gap: var(--gap-xl);
+}
+.profile-balance__cashback h2 {
+  margin: 0;
+}
+.profile-balance__cashback-card {
+  padding: var(--padding-sm);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-background-interactive-fourth-default);
+}
+.profile-balance__cashback-content {
+  gap: var(--gap-md);
+}
+.profile-balance__cashback-label, .profile-balance__cashback-figures {
+  gap: var(--gap-2xs);
+}

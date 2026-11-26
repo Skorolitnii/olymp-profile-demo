@@ -1,0 +1,48 @@
+<!doctype html><html lang="ru" data-theme="blue" data-ds-marks="off"><head><meta charset="utf-8"><title>Профиль OLYMP</title><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./rt/fonts.css">
+<link rel="stylesheet" href="./rt/base.css">
+<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css">
+<link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
+<link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
+<link rel="stylesheet" href="./app/components/ProfileNavbar.vue.css">
+<link rel="stylesheet" href="./app/pages/LoyaltyPage.vue.css">
+<style>html,body{margin:0}
+body{background:var(--color-background-page-lvl-1);color:var(--color-text-primary);font-family:var(--typography-typography-font-family-body),sans-serif}
+[data-ds-new],[data-ds-custom]{outline:1px dashed #d946ef;outline-offset:2px}
+[data-ds-custom]{outline-color:#f59e0b}
+html[data-ds-marks="off"] [data-ds-new],html[data-ds-marks="off"] [data-ds-custom]{outline:none}
+.ds-error{margin:16px;padding:12px 16px;border:1px solid #dc2626;border-radius:8px;background:#fef2f2;color:#7f1d1d;font:13px/1.5 ui-monospace,monospace;white-space:pre-wrap}</style>
+<script>addEventListener('message',function(e){var d=e.data||{};if(d.dsTheme)document.documentElement.setAttribute('data-theme',d.dsTheme);if(d.dsMarks)document.documentElement.setAttribute('data-ds-marks',d.dsMarks)})</script>
+<script type="importmap">{"imports":{"vue":"./rt/vue.js","@gamesite/game-core":"./rt/game-core.js","vue-i18n":"./rt/i18n.js","swiper":"./rt/vendor/swiper.js","swiper/vue":"./rt/vendor/swiper-vue.js","swiper/modules":"./rt/vendor/swiper-modules.js","aos":"./rt/vendor/aos.js","@vueuse/core":"./rt/vendor/vueuse.js","vue-final-modal":"./rt/vendor/vue-final-modal.js"}}</script>
+</head><body><div id="app"></div>
+<script type="module">
+function fail(e) {
+  const box = document.createElement('pre');
+  box.className = 'ds-error';
+  box.textContent = 'Страница не собралась: ' + (e && e.stack ? e.stack : e);
+  document.body.prepend(box);
+}
+addEventListener('error', (e) => fail(e.error || e.message));
+addEventListener('unhandledrejection', (e) => fail(e.reason));
+try {
+  const { createApp } = await import('vue');
+  const { createVfm } = await import('vue-final-modal');
+  const core = await import('@gamesite/game-core');
+  const { setMessages } = await import('vue-i18n');
+  setMessages((await import("./app/i18n/ru.js")).default);
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js")).default;
+  const app = createApp(Entry);
+  app.config.errorHandler = fail;
+  app.use(createVfm());
+  if (core.designTokensPlugin) app.use(core.designTokensPlugin, { initialTheme: document.documentElement.getAttribute('data-theme') });
+  app.mount('#app');
+  // Плагин токенов держит тему на <body>, панель — на <html>: тему панели передаём плагину.
+  const tokens = core.useDesignTokens ? core.useDesignTokens() : null;
+  const setTheme = (theme) => {
+    document.body.setAttribute('data-theme', theme);
+    if (tokens && tokens.setTheme) tokens.setTheme(theme);
+  };
+  addEventListener('message', (e) => { if (e.data && e.data.dsTheme) setTheme(e.data.dsTheme); });
+  setTheme(document.documentElement.getAttribute('data-theme'));
+} catch (e) { fail(e); }
+</script></body></html>
