@@ -74,100 +74,61 @@ body {
 }
 
 .versions__tab:focus-visible,
-.phone__screen:focus-visible {
+.preview__mobile:focus-visible {
   outline: 2px solid var(--color-border-interactive-focus);
   outline-offset: 2px;
 }
 
-/* Geometry of the Figma device frame, scaled with its original 448 × 914 proportions. */
-.phone {
-  position: relative;
-  container-type: inline-size;
-  inline-size: min(100%, 448px);
-  aspect-ratio: 448 / 914;
-  margin-block-start: calc(80px - var(--gap-2xl));
-}
-
-.phone__body {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 8.4821cqw;
-  pointer-events: none;
-}
-
-.phone__body img {
-  position: absolute;
-  inset-block-start: -0.79%;
-  inset-inline-start: -0.22%;
-  max-width: none;
-  inline-size: 100.45%;
-  block-size: 100.66%;
-}
-
-.phone__display {
-  position: absolute;
-  inset: 3.5714cqw 5.1339cqw 5.3571cqw;
-  overflow: hidden;
-  border-radius: 13.8393cqw;
-  background: var(--color-background-page-lvl-1);
-}
-
-.phone__status {
+.preview {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  block-size: 17.1875cqw;
-  padding: 0.4464cqw 5.3571cqw 0;
+  justify-items: center;
+  inline-size: min(100%, 448px);
 }
 
-.phone__time {
-  font: 600 3.7946cqw / 1 system-ui, sans-serif;
+.preview__actions {
+  display: grid;
+  place-items: center;
+  min-block-size: calc(80px - var(--gap-2xl));
 }
 
-.phone__island {
-  position: relative;
+.preview__mobile {
+  display: inline-grid;
+  place-items: center;
+  min-block-size: var(--size-5xl);
+  padding-inline: var(--padding-md);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-button-secondary-default);
+  color: var(--color-text-primary);
+  font: 600 0.875rem / 1.15 "Olymp Display", "Roboto", sans-serif;
+  text-decoration: none;
+}
+
+.preview__mobile:hover {
+  background: var(--color-background-button-secondary-hover);
+}
+
+.preview__mobile:active {
+  background: var(--color-background-button-secondary-press);
+}
+
+/* Preserve the width and aspect ratio of the previous inner viewport. */
+.preview__frame {
+  box-sizing: content-box;
+  inline-size: min(89.7321%, 402px);
+  aspect-ratio: 402 / 763;
+  border: 4px solid var(--color-border-primary);
+  border-radius: 24px;
   overflow: hidden;
-  inline-size: 28.125cqw;
-  block-size: 8.2589cqw;
-}
-
-.phone__island img {
-  position: absolute;
-  top: -100%;
-  left: -128.57%;
-  inline-size: 357.14%;
-  max-width: none;
-  block-size: 2486.49%;
-}
-
-.phone__levels {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1.5625cqw;
-}
-
-.phone__levels img {
-  inline-size: auto;
-  block-size: 2.9cqw;
-}
-
-.phone__screen {
-  display: block;
-  inline-size: 100%;
-  block-size: calc(100% - 24.7768cqw);
-  border: 0;
   background: var(--color-background-page-lvl-2);
 }
 
-.phone__gesture {
-  position: absolute;
-  inset: auto 0 1.7857cqw;
-  inline-size: 32.1429cqw;
-  block-size: 1.1161cqw;
-  margin-inline: auto;
-  border-radius: 1rem;
-  background: var(--color-icon-always-white);
-  pointer-events: none;
+.preview__frame:focus-within {
+  border-color: var(--color-border-interactive-focus);
+}
+
+.preview__screen {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
 }

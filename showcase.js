@@ -2,6 +2,7 @@ const tabList = document.querySelector('.versions')
 const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'))
 const panel = document.querySelector('#version-preview')
 const screen = panel.querySelector('iframe')
+const mobileLink = panel.querySelector('.preview__mobile')
 const profileUrl = new URL(screen.getAttribute('src'), location.href)
 
 function selectVersion(tab, focus = false) {
@@ -23,6 +24,7 @@ function selectVersion(tab, focus = false) {
     profileUrl.searchParams.set('version', version)
   }
   if (pageUrl.href !== location.href) history.replaceState(null, '', pageUrl)
+  mobileLink.href = profileUrl.href
   if (screen.src !== profileUrl.href) screen.src = profileUrl.href
 }
 
