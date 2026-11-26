@@ -70,7 +70,8 @@ const _hoisted_40 = { class: "loyalty-widget__value text-header-xs" }
 const _hoisted_41 = ["src", "alt"]
 const _hoisted_42 = {
   class: "loyalty-widget__cart",
-  "data-ds-custom": "cart-animation",
+  "data-name": "shop-animation",
+  "data-ds-custom": "shop-animation",
   "aria-hidden": "true"
 }
 const _hoisted_43 = ["src"]
@@ -86,6 +87,7 @@ const _hoisted_46 = ["aria-hidden"]
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { OlProgressBar } from '@gamesite/game-core'
+const chips = new URL("../assets/bonus-shop-chips.svg", import.meta.url).href;
 const cart = new URL("../assets/cart-animation.svg", import.meta.url).href;
 const chevronRight = new URL("../assets/chevron-right.svg", import.meta.url).href;
 const freeSpinsCoin = new URL("../assets/free-spins-coin.svg", import.meta.url).href;
@@ -108,6 +110,7 @@ export default {
   __name: 'LoyaltyWidget',
   props: {
   version: { type: String, default: 'v1' },
+  shopAnimation: { type: String, default: 'cart' },
   programUrl: { type: String, default: '' },
   questsUrl: { type: String, default: '' },
   shopUrl: { type: String, default: '' },
@@ -307,10 +310,11 @@ return (_ctx, _cache) => {
             }, null, 8 /* PROPS */, _hoisted_41)
           ]),
           _createElementVNode("span", _hoisted_42, [
-            _createElementVNode("img", {
-              src: _unref(cart),
+            (_openBlock(), _createElementBlock("img", {
+              key: props.shopAnimation,
+              src: props.shopAnimation === 'chips' ? _unref(chips) : _unref(cart),
               alt: ""
-            }, null, 8 /* PROPS */, _hoisted_43)
+            }, null, 8 /* PROPS */, _hoisted_43))
           ])
         ]),
         _: 1 /* STABLE */

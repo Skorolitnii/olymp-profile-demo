@@ -7,8 +7,8 @@
     <title>Редизайн ПЛ в Профиле</title>
     <link rel="stylesheet" href="./profile/rt/fonts.css">
     <link rel="stylesheet" href="./profile/rt/base.css">
-    <link rel="stylesheet" href="./showcase.css?rev=mobile-demo">
-    <script src="./showcase.js?rev=live-versions" defer></script>
+    <link rel="stylesheet" href="./showcase.css?rev=shop-animation">
+    <script src="./showcase.js?rev=shop-animation" defer></script>
   </head>
   <body>
     <main class="showcase">
@@ -23,10 +23,17 @@
         <button id="version-v2-2" class="versions__tab" type="button" role="tab" data-version="v2.2" aria-selected="false" aria-controls="version-preview" tabindex="-1">v2.2</button>
       </div>
       <div class="preview" id="version-preview" role="tabpanel" aria-labelledby="version-v1">
-        <div class="preview__frame">
-          <iframe class="preview__screen" src="./profile/index.html?rev=rounded-header" title="Интерактивное превью профиля Olymp"></iframe>
+        <div class="shop-animation" role="group" aria-label="Анимация магазина бонусов">
+          <span class="shop-animation__label" aria-hidden="true">Анимация</span>
+          <div class="shop-animation__options">
+            <button class="shop-animation__option" type="button" data-shop-animation="cart" aria-pressed="true">Корзинка</button>
+            <button class="shop-animation__option" type="button" data-shop-animation="chips" aria-pressed="false">Фишки</button>
+          </div>
         </div>
-        <a class="preview__mobile" href="./profile/index.html?rev=rounded-header">Mobile demo</a>
+        <div class="preview__frame">
+          <iframe class="preview__screen" src="./profile/index.html?rev=shop-animation" title="Интерактивное превью профиля Olymp"></iframe>
+        </div>
+        <a class="preview__mobile" href="./profile/index.html?rev=shop-animation">Mobile demo</a>
       </div>
     </main>
   </body>

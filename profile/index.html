@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="./rt/fonts.css">
 <link rel="stylesheet" href="./rt/base.css">
 <link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=expanded-scroll">
-<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=rounded-header">
+<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=shop-animation">
 <link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileNavbar.vue.css">
@@ -31,11 +31,16 @@ try {
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
   setMessages((await import("./app/i18n/ru.js")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=expanded-scroll")).default;
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=shop-animation")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
-  const requestedVersion = new URLSearchParams(location.search).get('version');
+  const animations = new Set(['cart', 'chips']);
+  const params = new URLSearchParams(location.search);
+  const requestedVersion = params.get('version');
   const version = shallowRef(versions.has(requestedVersion) ? requestedVersion : 'v1');
-  const app = createApp({ render: () => h(Entry, { key: version.value, version: version.value }) });
+  const shopAnimation = shallowRef(params.get('animation') === 'chips' ? 'chips' : 'cart');
+  const app = createApp({ render: () => h(Entry, {
+    key: version.value, version: version.value, shopAnimation: shopAnimation.value,
+  }) });
   app.config.errorHandler = fail;
   app.use(createVfm());
   if (core.designTokensPlugin) app.use(core.designTokensPlugin, { initialTheme: document.documentElement.getAttribute('data-theme') });
@@ -52,9 +57,10 @@ try {
     window.addEventListener('message', (event) => {
       if (event.origin !== location.origin || event.source !== window.parent) return;
       const message = event.data;
-      if (message?.type !== 'olymp:profile-version' || !versions.has(message.version) || version.value === message.version) return;
-      window.scrollTo(0, 0);
+      if (message?.type !== 'olymp:profile-selection' || !versions.has(message.version) || !animations.has(message.animation)) return;
+      if (version.value !== message.version || shopAnimation.value !== message.animation) window.scrollTo(0, 0);
       version.value = message.version;
+      shopAnimation.value = message.animation;
     });
     window.parent.postMessage({ type: 'olymp:profile-ready' }, location.origin);
   }

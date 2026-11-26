@@ -304,6 +304,8 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
   position: absolute;
   inset-block-start: 0;
   inset-inline-end: 0;
+  width: calc(var(--layout-width) / 3);
+  overflow: hidden;
   pointer-events: none;
 }
 .loyalty-widget__cart img {

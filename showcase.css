@@ -74,6 +74,7 @@ body {
 }
 
 .versions__tab:focus-visible,
+.shop-animation__option:focus-visible,
 .preview__mobile:focus-visible {
   outline: 2px solid var(--color-border-interactive-focus);
   outline-offset: 2px;
@@ -83,8 +84,45 @@ body {
   display: grid;
   justify-items: center;
   inline-size: min(100%, 448px);
-  padding-block-start: calc(80px - var(--gap-2xl));
   gap: var(--gap-2xl);
+}
+
+.shop-animation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-block-size: calc(80px - 2 * var(--gap-2xl));
+  gap: var(--gap-md);
+}
+
+.shop-animation__label {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.shop-animation__options {
+  display: flex;
+  gap: var(--gap-xs);
+  padding: var(--padding-2xs);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-background-button-secondary-default);
+}
+
+.shop-animation__option {
+  min-block-size: var(--size-5xl);
+  padding-inline: var(--padding-sm);
+  border: 0;
+  border-radius: var(--border-radius-md);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font: 600 0.875rem / 1.15 "Olymp Display", "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.shop-animation__option[aria-pressed="true"] {
+  background: var(--color-background-interactive-fourth-selected);
+  color: var(--color-background-button-primary-default);
 }
 
 .preview__mobile {
