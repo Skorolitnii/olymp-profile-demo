@@ -242,7 +242,7 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
 }
 .loyalty-widget__cart_chest img {
   /* ds-custom:shop-animation */
-  transform: translate(var(--gap-lg), calc(-1 * var(--size-6xl))) scale(0.37);
+  transform: translate(var(--gap-lg), calc(-1 * var(--size-4xl))) scale(0.37);
   transform-origin: top left;
   /* /ds-custom */
 }
