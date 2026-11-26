@@ -222,83 +222,11 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
 .loyalty-widget__value {
   color: var(--color-text-on-interactive-secondary);
 }
-.loyalty-widget__gifts {
+.loyalty-widget__quest-artwork {
   position: absolute;
-  inset-block: 0;
+  inset-block-start: 0;
   inset-inline-end: 0.3%;
   width: var(--size-6xl); /* ds-picked: 48px */
-  overflow: hidden;
-  pointer-events: none;
-}
-.loyalty-widget__gift {
-  position: absolute;
-  overflow: hidden;
-}
-.loyalty-widget__gift img {
-  position: absolute;
-  max-width: none;
-}
-.loyalty-widget__gift {
-  /* ds-custom:quest-collage */
-}
-.loyalty-widget__gift--top {
-  top: -25.8%;
-  left: 45.4%;
-  width: 59.52%;
-  height: 72.13%;
-  transform: rotate(-15deg);
-  mask: url("../assets/quest-mask.svg") -35.524px 1.477px no-repeat;
-}
-.loyalty-widget__gift--top img {
-  top: -20.28%;
-  left: -35.95%;
-  width: 410.71%;
-  height: 144.99%;
-}
-.loyalty-widget__gift--middle {
-  top: 18.12%;
-  left: 48.89%;
-  width: 62.1%;
-  height: 66.79%;
-  transform: rotate(-15deg);
-  mask: url("../assets/quest-mask.svg") -37.524px -18.524px no-repeat;
-}
-.loyalty-widget__gift--middle img {
-  top: -27.18%;
-  left: -261.12%;
-  width: 390.71%;
-  height: 155.11%;
-}
-.loyalty-widget__gift--bottom {
-  top: 48.51%;
-  left: 44.69%;
-  width: 61.74%;
-  height: 66.43%;
-  transform: rotate(15deg);
-  mask: url("../assets/quest-mask.svg") -35.525px -32.523px no-repeat;
-}
-.loyalty-widget__gift--bottom img {
-  top: -26.95%;
-  left: -151.01%;
-  width: 397.85%;
-  height: 156.68%;
-}
-.loyalty-widget__gift--clover {
-  top: 24.36%;
-  left: 25.56%;
-  width: 44.78%;
-  height: 47.38%;
-  transform: rotate(-30deg);
-  mask: url("../assets/quest-mask.svg") -25.786px -20.814px no-repeat;
-}
-.loyalty-widget__gift--clover img {
-  top: -31.1%;
-  left: -71.64%;
-  width: 243.45%;
-  height: 160.03%;
-}
-.loyalty-widget__gift {
-  /* /ds-custom */
 }
 .loyalty-widget__cart {
   position: absolute;
