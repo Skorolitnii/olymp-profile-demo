@@ -1,12 +1,25 @@
 const tabList = document.querySelector('.versions')
 const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'))
 const panel = document.querySelector('#version-preview')
-const screen = panel.querySelector('iframe')
+const profileFrame = panel.querySelector('iframe')
 const mobileLink = panel.querySelector('.preview__mobile')
-const profileUrl = new URL(screen.getAttribute('src'), location.href)
+const profileUrl = new URL(mobileLink.href)
+const profileOrigin = new URL(profileFrame.src).origin
+let activeVersion = 'v1'
+
+function syncPreview() {
+  profileFrame.contentWindow?.postMessage({ type: 'olymp:profile-version', version: activeVersion }, profileOrigin)
+}
+
+window.addEventListener('message', (event) => {
+  if (event.origin === profileOrigin && event.source === profileFrame.contentWindow && event.data?.type === 'olymp:profile-ready') {
+    syncPreview()
+  }
+})
 
 function selectVersion(tab, focus = false) {
   const version = tab.dataset.version
+  activeVersion = version
   for (const item of tabs) {
     const selected = item === tab
     item.setAttribute('aria-selected', String(selected))
@@ -23,9 +36,16 @@ function selectVersion(tab, focus = false) {
     pageUrl.searchParams.set('version', version)
     profileUrl.searchParams.set('version', version)
   }
-  if (pageUrl.href !== location.href) history.replaceState(null, '', pageUrl)
   mobileLink.href = profileUrl.href
-  if (screen.src !== profileUrl.href) screen.src = profileUrl.href
+  syncPreview()
+
+  if (pageUrl.href !== location.href) {
+    try {
+      history.replaceState(null, '', pageUrl)
+    } catch (error) {
+      if (error.name !== 'SecurityError') throw error
+    }
+  }
 }
 
 for (const tab of tabs) tab.addEventListener('click', () => selectVersion(tab))
