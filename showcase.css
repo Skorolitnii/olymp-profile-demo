@@ -83,12 +83,8 @@ body {
   display: grid;
   justify-items: center;
   inline-size: min(100%, 448px);
-}
-
-.preview__actions {
-  display: grid;
-  place-items: center;
-  min-block-size: calc(80px - var(--gap-2xl));
+  padding-block-start: calc(80px - var(--gap-2xl));
+  gap: var(--gap-2xl);
 }
 
 .preview__mobile {
