@@ -1,20 +1,27 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="blue">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#030534">
     <title>Редизайн ПЛ в Профиле</title>
     <link rel="stylesheet" href="./profile/rt/fonts.css">
+    <link rel="stylesheet" href="./profile/rt/base.css">
     <link rel="stylesheet" href="./showcase.css">
   </head>
   <body>
     <main class="showcase">
       <header class="showcase__header">
         <img class="showcase__logo" src="./assets/olymp.svg" alt="Olymp" width="131" height="25">
-        <h1>Редизайн ПЛ<br class="showcase__break"> в Профиле</h1>
+        <h1>Редизайн ПЛ в Профиле</h1>
       </header>
-      <div class="phone">
+      <div class="versions" role="tablist" aria-label="Версии шапки">
+        <button id="version-v1" class="versions__tab" type="button" role="tab" aria-selected="true" aria-controls="version-preview">v1</button>
+        <button class="versions__tab" type="button" role="tab" aria-selected="false" disabled>v1.2</button>
+        <button class="versions__tab" type="button" role="tab" aria-selected="false" disabled>v2</button>
+        <button class="versions__tab" type="button" role="tab" aria-selected="false" disabled>v2.2</button>
+      </div>
+      <div class="phone" id="version-preview" role="tabpanel" aria-labelledby="version-v1">
         <div class="phone__camera" aria-hidden="true"></div>
         <iframe class="phone__screen" src="./profile/index.html" title="Интерактивное превью профиля Olymp"></iframe>
         <div class="phone__gesture" aria-hidden="true"></div>
