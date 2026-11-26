@@ -233,11 +233,18 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
   inset-block-start: 0;
   inset-inline-end: 0;
   width: calc(var(--layout-width) / 3);
+  height: calc(var(--size-6xl) - var(--gap-2xs));
   overflow: hidden;
   pointer-events: none;
 }
 .loyalty-widget__cart img {
   max-width: none;
+}
+.loyalty-widget__cart_chest img {
+  /* ds-custom:shop-animation */
+  transform: translate(var(--gap-lg), calc(-1 * var(--size-6xl))) scale(0.37);
+  transform-origin: top left;
+  /* /ds-custom */
 }
 .loyalty-widget__hint {
   position: relative;

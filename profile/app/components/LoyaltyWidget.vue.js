@@ -1,4 +1,4 @@
-import { unref as _unref, createElementVNode as _createElementVNode, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, Fragment as _Fragment, renderList as _renderList, normalizeClass as _normalizeClass } from "vue"
+import { unref as _unref, createElementVNode as _createElementVNode, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, Fragment as _Fragment, normalizeClass as _normalizeClass, renderList as _renderList } from "vue"
 
 const _hoisted_1 = ["data-version", "aria-label"]
 const _hoisted_2 = {
@@ -56,12 +56,7 @@ const _hoisted_30 = ["src"]
 const _hoisted_31 = { class: "loyalty-widget__label text-label-xs" }
 const _hoisted_32 = { class: "loyalty-widget__value text-header-xs" }
 const _hoisted_33 = ["src", "alt"]
-const _hoisted_34 = {
-  class: "loyalty-widget__cart",
-  "data-name": "shop-animation",
-  "data-ds-custom": "shop-animation",
-  "aria-hidden": "true"
-}
+const _hoisted_34 = ["srcset"]
 const _hoisted_35 = ["src"]
 const _hoisted_36 = {
   class: "loyalty-widget__hint text-label-xs",
@@ -77,6 +72,8 @@ import { useI18n } from 'vue-i18n'
 import { OlProgressBar } from '@gamesite/game-core'
 const chips = new URL("../assets/bonus-shop-chips.svg", import.meta.url).href;
 const cart = new URL("../assets/cart-new-animated.svg", import.meta.url).href;
+const chestStill = new URL("../assets/chest-open.webp", import.meta.url).href;
+const chest = new URL("../assets/chest-opening-once.svg", import.meta.url).href;
 const chevronRight = new URL("../assets/chevron-right.svg", import.meta.url).href;
 const freeSpinsCoin = new URL("../assets/free-spins-coin.svg", import.meta.url).href;
 const wideLettering = new URL("../assets/free-spins-lettering-wide.svg", import.meta.url).href;
@@ -115,6 +112,7 @@ const shopAnimationAssets = new Map([
   ['cart', cart],
   ['chips', chips],
   ['gifts', gifts],
+  ['chest', chest],
 ])
 
 const shopAnimationSource = computed(() => {
@@ -296,13 +294,28 @@ return (_ctx, _cache) => {
               alt: _unref(t)('loyaltyWidget.balanceUnit')
             }, null, 8 /* PROPS */, _hoisted_33)
           ]),
-          _createElementVNode("span", _hoisted_34, [
-            (_openBlock(), _createElementBlock("img", {
-              key: props.shopAnimation,
-              src: shopAnimationSource.value,
-              alt: ""
-            }, null, 8 /* PROPS */, _hoisted_35))
-          ])
+          _createElementVNode("span", {
+            class: _normalizeClass(["loyalty-widget__cart", { 'loyalty-widget__cart_chest': props.shopAnimation === 'chest' }]),
+            "data-name": "shop-animation",
+            "data-ds-custom": "shop-animation",
+            "aria-hidden": "true"
+          }, [
+            (_openBlock(), _createElementBlock("picture", {
+              key: props.shopAnimation
+            }, [
+              (props.shopAnimation === 'chest')
+                ? (_openBlock(), _createElementBlock("source", {
+                    key: 0,
+                    media: "(prefers-reduced-motion: reduce)",
+                    srcset: _unref(chestStill)
+                  }, null, 8 /* PROPS */, _hoisted_34))
+                : _createCommentVNode("v-if", true),
+              _createElementVNode("img", {
+                src: shopAnimationSource.value,
+                alt: ""
+              }, null, 8 /* PROPS */, _hoisted_35)
+            ]))
+          ], 2 /* CLASS */)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"]))

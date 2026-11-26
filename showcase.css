@@ -101,6 +101,12 @@ body {
   font-size: 0.875rem;
 }
 
+@media (max-width: 28rem) {
+  .shop-animation__label {
+    display: none;
+  }
+}
+
 .shop-animation__options {
   display: flex;
   gap: var(--gap-xs);
