@@ -32,7 +32,6 @@
 }
 .loyalty-widget_expanded {
   gap: var(--gap-sm);
-  border-radius: 0;
   background-image: none;
 }
 .loyalty-widget_expanded .loyalty-widget__hint {

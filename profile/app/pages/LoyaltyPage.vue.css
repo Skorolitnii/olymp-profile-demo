@@ -43,9 +43,5 @@ html:has(.loyalty-page) {
 .loyalty-page__header[data-collapsed] :is(.loyalty-widget__program, .loyalty-widget__menu, .loyalty-widget__hint) {
   visibility: hidden;
 }
-.loyalty-page__header[data-collapsed] .loyalty-widget_expanded {
-  border-end-start-radius: var(--border-radius-xl);
-  border-end-end-radius: var(--border-radius-xl);
-}
 
 /* /ds-custom */
