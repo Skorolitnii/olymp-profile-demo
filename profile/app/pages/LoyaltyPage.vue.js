@@ -1,4 +1,4 @@
-import { createVNode as _createVNode, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+import { unref as _unref, createVNode as _createVNode, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
 
 const _hoisted_1 = {
   id: "profile-page",
@@ -17,6 +17,7 @@ import ProfileNavbar from "../components/ProfileNavbar.vue.js";
 export default {
   __name: 'LoyaltyPage',
   props: {
+  version: { type: String, default: 'v1' },
   links: { type: Object, default: () => ({}) },
   navLinks: { type: Object, default: () => ({}) },
 },
@@ -24,6 +25,7 @@ export default {
 
 const props = __props
 
+const version = ['v1', 'v1.2', 'v2', 'v2.2'].includes(props.version) ? props.version : 'v1'
 const header = ref(null)
 let range = 0
 let profileStart = 0
@@ -31,6 +33,7 @@ let scrollFrame = 0
 let headerObserver
 let profile
 let profileSurface
+let expandedProfile
 let disappearing
 let reduceMotion
 
@@ -42,7 +45,11 @@ function updateHeader() {
   const surface = profileStart ? Math.min(1, distance / profileStart) : 0
 
   profile.style.translate = `0 ${shift}px`
-  profileSurface.style.opacity = surface
+  profileSurface.style.opacity = expandedProfile ? 1 : surface
+  if (expandedProfile) {
+    profile.style.opacity = Math.min(1, progress * 3)
+    profile.style.visibility = progress > 0 ? 'visible' : ''
+  }
   for (const { element, fadeRate, movesUp } of disappearing) {
     element.style.opacity = Math.max(0, 1 - progress * fadeRate)
     if (movesUp) {
@@ -69,11 +76,13 @@ function measureHeader() {
 onMounted(() => {
   profile = header.value.querySelector('.loyalty-widget__profile')
   profileSurface = header.value.querySelector('.loyalty-widget__profile-surface')
+  expandedProfile = header.value.querySelector('.loyalty-expanded-profile')
   disappearing = [
-    { element: header.value.querySelector('.loyalty-widget__program'), fadeRate: 3 },
+    { element: expandedProfile || header.value.querySelector('.loyalty-widget__program'), fadeRate: 3 },
+    { element: header.value.querySelector('.loyalty-widget__scene'), fadeRate: 3 },
     { element: header.value.querySelector('.loyalty-widget__menu'), fadeRate: 1.65, movesUp: true },
     { element: header.value.querySelector('.loyalty-widget__hint'), fadeRate: 1.15, movesUp: true },
-  ]
+  ].filter(({ element }) => element)
   reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
   reduceMotion.addEventListener('change', scheduleHeader)
   headerObserver = new ResizeObserver(measureHeader)
@@ -98,10 +107,11 @@ return (_ctx, _cache) => {
       "data-ds-custom": "loyalty-scroll"
     }, [
       _createVNode(LoyaltyWidget, {
+        version: _unref(version),
         "program-url": props.links.loyalty,
         "quests-url": props.links.quests,
         "shop-url": props.links.bonusShop
-      }, null, 8 /* PROPS */, ["program-url", "quests-url", "shop-url"])
+      }, null, 8 /* PROPS */, ["version", "program-url", "quests-url", "shop-url"])
     ], 512 /* NEED_PATCH */),
     _createElementVNode("main", _hoisted_2, [
       _createVNode(ProfileBalance, {

@@ -20,6 +20,59 @@
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
 }
+.loyalty-widget_wide .loyalty-widget__program {
+  background-color: var(--color-background-interactive-fourth-default);
+  /* ds-custom:loyalty-temple */
+  backdrop-filter: blur(4px);
+  /* /ds-custom */
+}
+.loyalty-widget_wide .loyalty-widget__program h2 {
+  flex: 1;
+  text-align: center;
+}
+.loyalty-widget_expanded {
+  gap: var(--gap-sm);
+  border-radius: 0;
+}
+.loyalty-widget_expanded .loyalty-widget__hint {
+  margin-block-start: var(--gap-2xs);
+}
+.loyalty-widget_expanded .loyalty-widget__profile {
+  position: absolute;
+  top: 0;
+  inset-inline: var(--padding-sm);
+  opacity: 0;
+  visibility: hidden;
+}
+.loyalty-widget_expanded .loyalty-widget__scene {
+  inset-inline-end: calc(var(--layout-width) * -0.08602);
+  top: calc(var(--layout-width) * -0.05614);
+  width: calc(var(--layout-width) * 0.61935);
+  aspect-ratio: 222.967/143.289;
+  /* ds-custom:loyalty-temple */
+  mask: url("../assets/temple-mask-expanded.svg") 27.42px 9.594px/192.828px 124.105px no-repeat;
+  /* /ds-custom */
+}
+.loyalty-widget__scene {
+  position: absolute;
+  inset-inline-end: calc(var(--layout-width) * -0.01793);
+  top: calc(var(--layout-width) * -0.02619);
+  width: calc(var(--layout-width) * 0.55682);
+  aspect-ratio: 200.456/128.822;
+  overflow: hidden;
+  pointer-events: none;
+  /* ds-custom:loyalty-temple */
+  mask: url("../assets/temple-mask-wide.svg") -7.31px -23.352px/237.283px 175.527px no-repeat;
+  /* /ds-custom */
+}
+.loyalty-widget__scene img {
+  position: absolute;
+  top: 0;
+  left: -16.14%;
+  width: 125.52%;
+  height: 100%;
+  max-width: none;
+}
 .loyalty-widget__glow {
   position: absolute;
   inset-block-start: -4%;

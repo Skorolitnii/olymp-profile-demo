@@ -1,6 +1,7 @@
 <!doctype html><html lang="ru" data-theme="blue" data-ds-marks="off"><head><meta charset="utf-8"><title>Профиль OLYMP</title><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./rt/fonts.css">
 <link rel="stylesheet" href="./rt/base.css">
+<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css">
 <link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
@@ -31,7 +32,8 @@ try {
   const { setMessages } = await import('vue-i18n');
   setMessages((await import("./app/i18n/ru.js")).default);
   const Entry = (await import("./app/pages/LoyaltyPage.vue.js")).default;
-  const app = createApp(Entry);
+  const version = new URLSearchParams(location.search).get('version') || 'v1';
+  const app = createApp(Entry, { version });
   app.config.errorHandler = fail;
   app.use(createVfm());
   if (core.designTokensPlugin) app.use(core.designTokensPlugin, { initialTheme: document.documentElement.getAttribute('data-theme') });

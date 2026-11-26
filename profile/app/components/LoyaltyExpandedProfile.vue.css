@@ -1,0 +1,104 @@
+.loyalty-expanded-profile {
+  position: relative;
+  display: grid;
+  gap: var(--gap-sm);
+}
+.loyalty-expanded-profile__identity, .loyalty-expanded-profile__badge, .loyalty-expanded-profile__progress, .loyalty-expanded-profile__reward {
+  display: flex;
+  align-items: center;
+}
+.loyalty-expanded-profile__identity {
+  gap: var(--gap-xl);
+}
+.loyalty-expanded-profile__avatar {
+  position: relative;
+  flex: 0 0 var(--size-6xl);
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.loyalty-expanded-profile__avatar img {
+  position: absolute;
+  top: -3.49%;
+  left: -45.835%;
+  width: 188.535%;
+  height: 105.24%;
+  max-width: none;
+}
+.loyalty-expanded-profile__figure {
+  display: grid;
+  min-width: 0;
+  justify-items: start;
+  gap: var(--gap-2xs);
+}
+.loyalty-expanded-profile__name, .loyalty-expanded-profile__level, .loyalty-expanded-profile__badge h2 {
+  margin: 0;
+}
+.loyalty-expanded-profile__level {
+  color: var(--color-text-tertiary);
+}
+.loyalty-expanded-profile__badge {
+  gap: var(--gap-xs);
+  padding: var(--padding-2xs);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-page-lvl-2);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.loyalty-expanded-profile__badge:focus-visible {
+  outline: var(--border-width-sm) solid var(--color-border-interactive-focus);
+}
+.loyalty-expanded-profile__info {
+  position: absolute;
+  top: 0;
+  inset-inline-end: calc(var(--gap-xs) * -1);
+}
+.loyalty-expanded-profile__bar {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.loyalty-expanded-profile__xp {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-text-secondary);
+}
+.loyalty-expanded-profile__reward {
+  gap: var(--gap-2xs);
+  padding: var(--padding-2xs);
+  color: var(--color-text-secondary);
+  background-color: var(--progress-bar-color-background-bar);
+  border-radius: var(--border-radius-full);
+  white-space: nowrap;
+}
+.loyalty-expanded-profile__coin {
+  position: relative;
+  flex: 0 0 var(--size-icon-xs);
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.loyalty-expanded-profile__coin img {
+  position: absolute;
+  max-width: none;
+}
+.loyalty-expanded-profile__coin img:first-child {
+  top: -14.37%;
+  left: -15.39%;
+}
+.loyalty-expanded-profile__coin img:last-child {
+  top: 33.34%;
+  left: 23.96%;
+}
+
+/* ds-custom:loyalty-badge-surface */
+.loyalty-expanded-profile__badge {
+  background-image: radial-gradient(ellipse 100% 100% at top, rgba(181, 181, 181, 0.48), rgba(181, 181, 181, 0.32) 51.5%, transparent);
+}
+.loyalty-expanded-profile__badge_glass {
+  background-color: var(--color-background-interactive-fourth-default);
+  background-image: none;
+  backdrop-filter: blur(8px);
+}
+
+/* /ds-custom */

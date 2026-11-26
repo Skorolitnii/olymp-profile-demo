@@ -2,6 +2,10 @@ export default {
   loyaltyWidget: {
     title: 'Программа лояльности',
     player: 'Нурлан Сабуров',
+    level: '1 уровень',
+    initialExperience: '0 / 2 000 XP',
+    expandedReward: '25 FS',
+    information: 'Информация о программе лояльности',
     experience: '1 000 / 2 000 XP',
     rewardLevel: 'За 2 ур.',
     reward: '25',

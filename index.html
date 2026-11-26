@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./profile/rt/fonts.css">
     <link rel="stylesheet" href="./profile/rt/base.css">
     <link rel="stylesheet" href="./showcase.css">
+    <script src="./showcase.js" defer></script>
   </head>
   <body>
     <main class="showcase">
@@ -16,15 +17,28 @@
         <h1>Редизайн ПЛ в Профиле</h1>
       </header>
       <div class="versions" role="tablist" aria-label="Версии шапки">
-        <button id="version-v1" class="versions__tab" type="button" role="tab" aria-selected="true" aria-controls="version-preview">v1</button>
-        <button class="versions__tab" type="button" role="tab" aria-selected="false" disabled>v1.2</button>
-        <button class="versions__tab" type="button" role="tab" aria-selected="false" disabled>v2</button>
-        <button class="versions__tab" type="button" role="tab" aria-selected="false" disabled>v2.2</button>
+        <button id="version-v1" class="versions__tab" type="button" role="tab" data-version="v1" aria-selected="true" aria-controls="version-preview">v1</button>
+        <button id="version-v1-2" class="versions__tab" type="button" role="tab" data-version="v1.2" aria-selected="false" aria-controls="version-preview" tabindex="-1">v1.2</button>
+        <button id="version-v2" class="versions__tab" type="button" role="tab" data-version="v2" aria-selected="false" aria-controls="version-preview" tabindex="-1">v2</button>
+        <button id="version-v2-2" class="versions__tab" type="button" role="tab" data-version="v2.2" aria-selected="false" aria-controls="version-preview" tabindex="-1">v2.2</button>
       </div>
       <div class="phone" id="version-preview" role="tabpanel" aria-labelledby="version-v1">
-        <div class="phone__camera" aria-hidden="true"></div>
-        <iframe class="phone__screen" src="./profile/index.html" title="Интерактивное превью профиля Olymp"></iframe>
-        <div class="phone__gesture" aria-hidden="true"></div>
+        <div class="phone__body" aria-hidden="true">
+          <img src="./assets/device-frame.png" alt="" width="1350" height="2760">
+        </div>
+        <div class="phone__display">
+          <div class="phone__status" aria-hidden="true">
+            <span class="phone__time">9:41</span>
+            <span class="phone__island"><img src="./assets/device-frame.png" alt=""></span>
+            <span class="phone__levels">
+              <img src="./assets/status-cellular.svg" alt="">
+              <img src="./assets/status-wifi.svg" alt="">
+              <img src="./assets/status-battery.svg" alt="">
+            </span>
+          </div>
+          <iframe class="phone__screen" src="./profile/index.html" title="Интерактивное превью профиля Olymp"></iframe>
+          <div class="phone__gesture" aria-hidden="true"></div>
+        </div>
       </div>
     </main>
   </body>
