@@ -1,9 +1,10 @@
 <!doctype html><html lang="ru" data-theme="blue" data-ds-marks="off"><head><meta charset="utf-8"><title>Профиль OLYMP</title><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./rt/fonts.css">
 <link rel="stylesheet" href="./rt/base.css">
+<link rel="stylesheet" href="./app/components/LoyaltyVipBadge.vue.css?rev=vip-levels">
 <link rel="stylesheet" href="./app/components/LoyaltyAvatar.vue.css?rev=games-levels">
-<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=games-levels">
-<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=games-levels">
+<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=vip-levels">
+<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=vip-levels">
 <link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileGames.vue.css?rev=games-levels">
@@ -32,8 +33,8 @@ try {
   const { createVfm } = await import('vue-final-modal');
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
-  setMessages((await import("./app/i18n/ru.js?rev=games-levels")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=games-levels")).default;
+  setMessages((await import("./app/i18n/ru.js?rev=vip-levels")).default);
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=vip-levels")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
   const animations = new Set(['cart', 'chips', 'gifts', 'chest']);
   const sizes = new Set(['md', 'lg']);

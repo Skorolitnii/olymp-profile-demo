@@ -35,33 +35,37 @@ const _hoisted_14 = {
   "data-name": "loyalty-profile"
 }
 const _hoisted_15 = { class: "loyalty-widget__player" }
-const _hoisted_16 = { class: "loyalty-widget__title text-trim-2xs" }
-const _hoisted_17 = { class: "loyalty-widget__experience" }
-const _hoisted_18 = { class: "loyalty-widget__caption text-label-xs" }
-const _hoisted_19 = { class: "loyalty-widget__reward" }
-const _hoisted_20 = { class: "loyalty-widget__reward-value text-header-3xs" }
-const _hoisted_21 = ["aria-label"]
-const _hoisted_22 = ["src"]
+const _hoisted_16 = { class: "loyalty-widget__name" }
+const _hoisted_17 = { class: "loyalty-widget__title text-trim-2xs" }
+const _hoisted_18 = { class: "loyalty-widget__experience" }
+const _hoisted_19 = { class: "loyalty-widget__caption text-label-xs" }
+const _hoisted_20 = {
+  key: 0,
+  class: "loyalty-widget__reward"
+}
+const _hoisted_21 = { class: "loyalty-widget__reward-value text-header-3xs" }
+const _hoisted_22 = ["aria-label"]
 const _hoisted_23 = ["src"]
 const _hoisted_24 = ["src"]
 const _hoisted_25 = ["src"]
-const _hoisted_26 = ["src", "alt"]
-const _hoisted_27 = ["data-animation"]
-const _hoisted_28 = {
+const _hoisted_26 = ["src"]
+const _hoisted_27 = ["src", "alt"]
+const _hoisted_28 = ["data-animation"]
+const _hoisted_29 = {
   key: 0,
   class: "loyalty-widget__chest"
 }
-const _hoisted_29 = ["src"]
 const _hoisted_30 = ["src"]
 const _hoisted_31 = ["src"]
-const _hoisted_32 = {
+const _hoisted_32 = ["src"]
+const _hoisted_33 = {
   class: "loyalty-widget__hint text-label-xs",
   "data-name": "loyalty-hint",
   "data-ds-new": "loyalty-hint",
   "data-ds-custom": "hint-transition"
 }
-const _hoisted_33 = ["src"]
-const _hoisted_34 = ["aria-hidden"]
+const _hoisted_34 = ["src"]
+const _hoisted_35 = ["aria-hidden"]
 
 import { computed, onMounted, onUnmounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -83,7 +87,8 @@ const questArtwork = new URL("../assets/quest-artwork-transparent.png", import.m
 const temple = new URL("../assets/temple.png", import.meta.url).href;
 const topGlow = new URL("../assets/top-glow.svg", import.meta.url).href;
 import LoyaltyAvatar from "./LoyaltyAvatar.vue.js?rev=games-levels";
-import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=games-levels";
+import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=vip-levels";
+import LoyaltyVipBadge from "./LoyaltyVipBadge.vue.js?rev=vip-levels";
 
 const hintIntervalMs = 5000
 
@@ -103,6 +108,7 @@ export default {
 const props = __props
 
 const { t } = useI18n()
+const isFinalLevel = computed(() => props.level === 6)
 const olpBalances = [238, 640, 1200, 2600, 5400, 10800]
 const displayBalance = computed(() => {
   const balance = olpBalances[props.level - 1] ?? olpBalances[0]
@@ -238,33 +244,40 @@ return (_ctx, _cache) => {
               level: props.level
             }, null, 8 /* PROPS */, ["level"]),
             _createElementVNode("div", _hoisted_15, [
-              _createElementVNode("p", _hoisted_16, _toDisplayString(_unref(t)('loyaltyWidget.player')), 1 /* TEXT */),
-              _createElementVNode("div", _hoisted_17, [
+              _createElementVNode("div", _hoisted_16, [
+                _createElementVNode("p", _hoisted_17, _toDisplayString(_unref(t)('loyaltyWidget.player')), 1 /* TEXT */),
+                _createVNode(LoyaltyVipBadge, {
+                  level: props.level
+                }, null, 8 /* PROPS */, ["level"])
+              ]),
+              _createElementVNode("div", _hoisted_18, [
                 _createVNode(_unref(OlProgressBar), {
                   size: "xs",
-                  value: 50,
+                  value: isFinalLevel.value ? 100 : 50,
                   "aria-hidden": "true"
-                }),
-                _createElementVNode("div", _hoisted_18, [
-                  _createElementVNode("span", null, _toDisplayString(_unref(t)('loyaltyWidget.experience')), 1 /* TEXT */),
-                  _createElementVNode("span", _hoisted_19, [
-                    _createTextVNode(_toDisplayString(_unref(t)('loyaltyWidget.rewardLevel')) + " ", 1 /* TEXT */),
-                    _createElementVNode("span", _hoisted_20, _toDisplayString(_unref(t)('loyaltyWidget.reward')), 1 /* TEXT */),
-                    _createElementVNode("span", {
-                      class: "loyalty-widget__reward-coin",
-                      role: "img",
-                      "aria-label": _unref(t)('loyaltyWidget.rewardUnit')
-                    }, [
-                      _createElementVNode("img", {
-                        src: _unref(freeSpinsCoin),
-                        alt: ""
-                      }, null, 8 /* PROPS */, _hoisted_22),
-                      _createElementVNode("img", {
-                        src: props.version === 'v1.2' ? _unref(wideLettering) : _unref(freeSpinsLettering),
-                        alt: ""
-                      }, null, 8 /* PROPS */, _hoisted_23)
-                    ], 8 /* PROPS */, _hoisted_21)
-                  ])
+                }, null, 8 /* PROPS */, ["value"]),
+                _createElementVNode("div", _hoisted_19, [
+                  _createElementVNode("span", null, _toDisplayString(_unref(t)(isFinalLevel.value ? 'loyaltyWidget.completedExperience' : 'loyaltyWidget.experience')), 1 /* TEXT */),
+                  (!isFinalLevel.value)
+                    ? (_openBlock(), _createElementBlock("span", _hoisted_20, [
+                        _createTextVNode(_toDisplayString(_unref(t)('loyaltyWidget.rewardLevel', { level: props.level + 1 })) + " ", 1 /* TEXT */),
+                        _createElementVNode("span", _hoisted_21, _toDisplayString(_unref(t)('loyaltyWidget.reward')), 1 /* TEXT */),
+                        _createElementVNode("span", {
+                          class: "loyalty-widget__reward-coin",
+                          role: "img",
+                          "aria-label": _unref(t)('loyaltyWidget.rewardUnit')
+                        }, [
+                          _createElementVNode("img", {
+                            src: _unref(freeSpinsCoin),
+                            alt: ""
+                          }, null, 8 /* PROPS */, _hoisted_23),
+                          _createElementVNode("img", {
+                            src: props.version === 'v1.2' ? _unref(wideLettering) : _unref(freeSpinsLettering),
+                            alt: ""
+                          }, null, 8 /* PROPS */, _hoisted_24)
+                        ], 8 /* PROPS */, _hoisted_22)
+                      ]))
+                    : _createCommentVNode("v-if", true)
                 ])
               ])
             ])
@@ -290,14 +303,14 @@ return (_ctx, _cache) => {
             _createElementVNode("img", {
               src: _unref(missionProgress),
               alt: ""
-            }, null, 8 /* PROPS */, _hoisted_24),
+            }, null, 8 /* PROPS */, _hoisted_25),
             _createTextVNode(" " + _toDisplayString(_unref(t)('loyaltyWidget.questProgress')), 1 /* TEXT */)
           ], 2 /* CLASS */),
           _createElementVNode("img", {
             class: "loyalty-widget__quest-artwork",
             src: _unref(questArtwork),
             alt: ""
-          }, null, 8 /* PROPS */, _hoisted_25)
+          }, null, 8 /* PROPS */, _hoisted_26)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"])),
@@ -318,7 +331,7 @@ return (_ctx, _cache) => {
             _createElementVNode("img", {
               src: _unref(olpCoin),
               alt: _unref(t)('loyaltyWidget.balanceUnit')
-            }, null, 8 /* PROPS */, _hoisted_26)
+            }, null, 8 /* PROPS */, _hoisted_27)
           ], 2 /* CLASS */),
           _createElementVNode("span", {
             class: "loyalty-widget__cart",
@@ -328,41 +341,41 @@ return (_ctx, _cache) => {
             "aria-hidden": "true"
           }, [
             (props.shopAnimation === 'chest')
-              ? (_openBlock(), _createElementBlock("span", _hoisted_28, [
+              ? (_openBlock(), _createElementBlock("span", _hoisted_29, [
                   _createElementVNode("img", {
                     class: "loyalty-widget__chest-frames",
                     src: _unref(chestFrames),
                     alt: "",
                     onLoad: startChestAnimation
-                  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_29),
+                  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_30),
                   _createElementVNode("img", {
                     class: "loyalty-widget__chest-glow",
                     src: _unref(chestGlow),
                     alt: ""
-                  }, null, 8 /* PROPS */, _hoisted_30)
+                  }, null, 8 /* PROPS */, _hoisted_31)
                 ]))
               : (_openBlock(), _createElementBlock("img", {
                   key: props.shopAnimation,
                   src: shopAnimationSource.value,
                   alt: ""
-                }, null, 8 /* PROPS */, _hoisted_31))
-          ], 8 /* PROPS */, _hoisted_27)
+                }, null, 8 /* PROPS */, _hoisted_32))
+          ], 8 /* PROPS */, _hoisted_28)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"]))
     ], 2 /* CLASS */),
-    _createElementVNode("p", _hoisted_32, [
+    _createElementVNode("p", _hoisted_33, [
       _createElementVNode("img", {
         class: "loyalty-widget__hint-icon",
         src: _unref(hintIcon),
         alt: ""
-      }, null, 8 /* PROPS */, _hoisted_33),
+      }, null, 8 /* PROPS */, _hoisted_34),
       (_openBlock(), _createElementBlock(_Fragment, null, _renderList(hintKeys, (key, index) => {
         return _createElementVNode("span", {
           key: key,
           class: _normalizeClass(["loyalty-widget__hint-text", { 'loyalty-widget__hint-text_active': index === activeHintIndex.value }]),
           "aria-hidden": index !== activeHintIndex.value || undefined
-        }, _toDisplayString(_unref(t)(`loyaltyWidget.hints.${key}`)), 11 /* TEXT, CLASS, PROPS */, _hoisted_34)
+        }, _toDisplayString(_unref(t)(`loyaltyWidget.hints.${key}`)), 11 /* TEXT, CLASS, PROPS */, _hoisted_35)
       }), 64 /* STABLE_FRAGMENT */))
     ])
   ], 10 /* CLASS, PROPS */, _hoisted_1))

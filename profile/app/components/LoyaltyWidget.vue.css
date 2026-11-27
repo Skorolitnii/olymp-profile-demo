@@ -144,7 +144,7 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
   height: 100%;
   max-width: none;
 }
-.loyalty-widget__profile, .loyalty-widget__caption, .loyalty-widget__reward, .loyalty-widget__value {
+.loyalty-widget__profile, .loyalty-widget__name, .loyalty-widget__caption, .loyalty-widget__reward, .loyalty-widget__value {
   display: flex;
   align-items: center;
 }
@@ -154,7 +154,16 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
   padding-block: var(--padding-xs);
 }
 .loyalty-widget__avatar {
-  flex: 0 0 var(--size-4xl);
+  flex: 0 0 var(--size-5xl);
+}
+.loyalty-widget__name {
+  gap: var(--gap-sm);
+}
+.loyalty-widget__name > .loyalty-widget__title {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .loyalty-widget__player, .loyalty-widget__experience {
   display: grid;
