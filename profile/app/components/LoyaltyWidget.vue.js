@@ -36,11 +36,11 @@ const _hoisted_14 = {
 }
 const _hoisted_15 = { class: "loyalty-widget__player" }
 const _hoisted_16 = { class: "loyalty-widget__name" }
-const _hoisted_17 = { class: "loyalty-widget__title text-trim-2xs" }
+const _hoisted_17 = { class: "loyalty-widget__title text-header-2xs" }
 const _hoisted_18 = { class: "loyalty-widget__experience" }
 const _hoisted_19 = { class: "loyalty-widget__caption text-label-xs" }
 const _hoisted_20 = {
-  key: 0,
+  key: 1,
   class: "loyalty-widget__reward"
 }
 const _hoisted_21 = { class: "loyalty-widget__reward-value text-header-3xs" }
@@ -87,7 +87,8 @@ const questArtwork = new URL("../assets/quest-artwork-transparent.png", import.m
 const temple = new URL("../assets/temple.png", import.meta.url).href;
 const topGlow = new URL("../assets/top-glow.svg", import.meta.url).href;
 import LoyaltyAvatar from "./LoyaltyAvatar.vue.js?rev=games-levels";
-import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=vip-levels";
+import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=level-ranking";
+import LoyaltyRanking from "./LoyaltyRanking.vue.js?rev=level-ranking";
 import LoyaltyVipBadge from "./LoyaltyVipBadge.vue.js?rev=vip-levels";
 
 const hintIntervalMs = 5000
@@ -258,8 +259,9 @@ return (_ctx, _cache) => {
                 }, null, 8 /* PROPS */, ["value"]),
                 _createElementVNode("div", _hoisted_19, [
                   _createElementVNode("span", null, _toDisplayString(_unref(t)(isFinalLevel.value ? 'loyaltyWidget.completedExperience' : 'loyaltyWidget.experience')), 1 /* TEXT */),
-                  (!isFinalLevel.value)
-                    ? (_openBlock(), _createElementBlock("span", _hoisted_20, [
+                  (isFinalLevel.value)
+                    ? (_openBlock(), _createBlock(LoyaltyRanking, { key: 0 }))
+                    : (_openBlock(), _createElementBlock("span", _hoisted_20, [
                         _createTextVNode(_toDisplayString(_unref(t)('loyaltyWidget.rewardLevel', { level: props.level + 1 })) + " ", 1 /* TEXT */),
                         _createElementVNode("span", _hoisted_21, _toDisplayString(_unref(t)('loyaltyWidget.reward')), 1 /* TEXT */),
                         _createElementVNode("span", {
@@ -277,7 +279,6 @@ return (_ctx, _cache) => {
                           }, null, 8 /* PROPS */, _hoisted_24)
                         ], 8 /* PROPS */, _hoisted_22)
                       ]))
-                    : _createCommentVNode("v-if", true)
                 ])
               ])
             ])

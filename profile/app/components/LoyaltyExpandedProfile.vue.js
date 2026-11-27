@@ -1,4 +1,4 @@
-import { createVNode as _createVNode, unref as _unref, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createTextVNode as _createTextVNode, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode } from "vue"
+import { createVNode as _createVNode, unref as _unref, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, createTextVNode as _createTextVNode } from "vue"
 
 const _hoisted_1 = {
   class: "loyalty-expanded-profile",
@@ -14,17 +14,24 @@ const _hoisted_8 = { class: "loyalty-expanded-profile__name text-header-xs" }
 const _hoisted_9 = { class: "loyalty-expanded-profile__level text-label-xs" }
 const _hoisted_10 = ["src", "alt"]
 const _hoisted_11 = { class: "loyalty-expanded-profile__progress" }
-const _hoisted_12 = { class: "loyalty-expanded-profile__xp text-label-sm" }
+const _hoisted_12 = {
+  key: 0,
+  class: "loyalty-expanded-profile__caption text-label-xs"
+}
 const _hoisted_13 = {
+  key: 1,
+  class: "loyalty-expanded-profile__xp text-label-sm"
+}
+const _hoisted_14 = {
   key: 0,
   class: "loyalty-expanded-profile__reward text-header-3xs"
 }
-const _hoisted_14 = {
+const _hoisted_15 = {
   class: "loyalty-expanded-profile__coin",
   "aria-hidden": "true"
 }
-const _hoisted_15 = ["src"]
 const _hoisted_16 = ["src"]
+const _hoisted_17 = ["src"]
 
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -36,6 +43,7 @@ const glassLettering = new URL("../assets/progress-coin-lettering-glass.svg", im
 const lettering = new URL("../assets/progress-coin-lettering.svg", import.meta.url).href;
 const coin = new URL("../assets/progress-coin.svg", import.meta.url).href;
 import LoyaltyAvatar from "./LoyaltyAvatar.vue.js?rev=games-levels";
+import LoyaltyRanking from "./LoyaltyRanking.vue.js?rev=level-ranking";
 import LoyaltyVipBadge from "./LoyaltyVipBadge.vue.js?rev=vip-levels";
 
 
@@ -105,19 +113,24 @@ return (_ctx, _cache) => {
           "right-value": "",
           "aria-hidden": "true"
         }, null, 8 /* PROPS */, ["value"]),
-        _createElementVNode("span", _hoisted_12, _toDisplayString(_unref(t)(isFinalLevel.value ? 'loyaltyWidget.completedExperience' : 'loyaltyWidget.initialExperience')), 1 /* TEXT */)
+        (isFinalLevel.value)
+          ? (_openBlock(), _createElementBlock("div", _hoisted_12, [
+              _createElementVNode("span", null, _toDisplayString(_unref(t)('loyaltyWidget.completedExperience')), 1 /* TEXT */),
+              _createVNode(LoyaltyRanking)
+            ]))
+          : (_openBlock(), _createElementBlock("span", _hoisted_13, _toDisplayString(_unref(t)('loyaltyWidget.initialExperience')), 1 /* TEXT */))
       ], 2 /* CLASS */),
       (!isFinalLevel.value)
-        ? (_openBlock(), _createElementBlock("div", _hoisted_13, [
-            _createElementVNode("span", _hoisted_14, [
+        ? (_openBlock(), _createElementBlock("div", _hoisted_14, [
+            _createElementVNode("span", _hoisted_15, [
               _createElementVNode("img", {
                 src: _unref(coin),
                 alt: ""
-              }, null, 8 /* PROPS */, _hoisted_15),
+              }, null, 8 /* PROPS */, _hoisted_16),
               _createElementVNode("img", {
                 src: props.glass ? _unref(glassLettering) : _unref(lettering),
                 alt: ""
-              }, null, 8 /* PROPS */, _hoisted_16)
+              }, null, 8 /* PROPS */, _hoisted_17)
             ]),
             _createTextVNode(" " + _toDisplayString(_unref(t)('loyaltyWidget.expandedReward')), 1 /* TEXT */)
           ]))

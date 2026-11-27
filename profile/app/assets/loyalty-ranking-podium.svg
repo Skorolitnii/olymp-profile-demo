@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="objects/podium">
+<g id="Vector">
+<path d="M1.5 4.5C1.5 4.22386 1.72386 4 2 4H3.5V10H2C1.72386 10 1.5 9.77614 1.5 9.5V4.5Z" fill="white" fill-opacity="0.9"/>
+<path d="M8.5 5H10C10.2761 5 10.5 5.22386 10.5 5.5V9.5C10.5 9.77614 10.2761 10 10 10H8.5V5Z" fill="white" fill-opacity="0.9"/>
+<path d="M5 2C4.72386 2 4.5 2.22386 4.5 2.5V10H7.5V2.5C7.5 2.22386 7.27614 2 7 2H5ZM6.44417 4.875H5.55583C5.38693 4.875 5.25 4.73508 5.25 4.5625C5.25 4.38992 5.38693 4.25 5.55583 4.25H5.73058V3.625H5.65777C5.48887 3.625 5.35194 3.48508 5.35194 3.3125C5.35194 3.13992 5.48887 3 5.65777 3H6.0364C6.2053 3 6.34223 3.13992 6.34223 3.3125V4.25H6.44417C6.61307 4.25 6.75 4.38992 6.75 4.5625C6.75 4.73508 6.61307 4.875 6.44417 4.875Z" fill-rule="evenodd" clip-rule="evenodd" fill="white" fill-opacity="0.9"/>
+</g>
+</g>
+</svg>

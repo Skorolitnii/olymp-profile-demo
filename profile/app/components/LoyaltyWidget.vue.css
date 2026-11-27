@@ -161,7 +161,7 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
 }
 .loyalty-widget__name > .loyalty-widget__title {
   min-width: 0;
-  overflow: hidden;
+  overflow-x: clip;
   white-space: nowrap;
   text-overflow: ellipsis;
 }

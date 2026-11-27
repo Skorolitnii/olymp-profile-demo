@@ -3,7 +3,7 @@
   display: grid;
   gap: var(--gap-sm);
 }
-.loyalty-expanded-profile__identity, .loyalty-expanded-profile__badge, .loyalty-expanded-profile__name-row, .loyalty-expanded-profile__progress, .loyalty-expanded-profile__reward {
+.loyalty-expanded-profile__identity, .loyalty-expanded-profile__badge, .loyalty-expanded-profile__name-row, .loyalty-expanded-profile__progress, .loyalty-expanded-profile__caption, .loyalty-expanded-profile__reward {
   display: flex;
   align-items: center;
 }
@@ -29,7 +29,7 @@
 }
 .loyalty-expanded-profile__name {
   min-width: 0;
-  overflow: hidden;
+  overflow-x: clip;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -67,6 +67,12 @@
   display: grid;
   place-items: center;
   color: var(--color-text-secondary);
+}
+.loyalty-expanded-profile__caption {
+  justify-content: space-between;
+  gap: var(--gap-2xs);
+  margin-block-start: var(--gap-2xs);
+  color: var(--color-text-tertiary);
 }
 .loyalty-expanded-profile__reward {
   position: relative;

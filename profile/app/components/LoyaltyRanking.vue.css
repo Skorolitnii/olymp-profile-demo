@@ -1,0 +1,10 @@
+.loyalty-ranking {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-2xs);
+  white-space: nowrap;
+  color: var(--color-text-tertiary);
+}
+.loyalty-ranking__position {
+  color: var(--color-text-secondary);
+}

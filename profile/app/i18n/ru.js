@@ -9,6 +9,7 @@ export default {
     information: 'Информация о программе лояльности',
     experience: '1 000 / 2 000 XP',
     completedExperience: '2 000 XP',
+    ranking: 'В рейтинге:',
     rewardLevel: 'За {level} ур.',
     reward: '25',
     rewardUnit: 'фриспинов',
