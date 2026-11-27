@@ -3,7 +3,7 @@
   display: grid;
   gap: var(--gap-sm);
 }
-.loyalty-expanded-profile__identity, .loyalty-expanded-profile__badge, .loyalty-expanded-profile__name-row, .loyalty-expanded-profile__progress, .loyalty-expanded-profile__caption, .loyalty-expanded-profile__reward {
+.loyalty-expanded-profile__identity, .loyalty-expanded-profile__badge, .loyalty-expanded-profile__level-row, .loyalty-expanded-profile__progress, .loyalty-expanded-profile__caption, .loyalty-expanded-profile__reward {
   display: flex;
   align-items: center;
 }
@@ -22,13 +22,12 @@
 .loyalty-expanded-profile__name, .loyalty-expanded-profile__level, .loyalty-expanded-profile__badge h2 {
   margin: 0;
 }
-.loyalty-expanded-profile__name-row {
-  min-width: 0;
-  max-width: 100%;
-  gap: var(--gap-sm);
+.loyalty-expanded-profile__level-row {
+  gap: var(--gap-xs);
 }
 .loyalty-expanded-profile__name {
   min-width: 0;
+  max-width: 100%;
   overflow-x: clip;
   white-space: nowrap;
   text-overflow: ellipsis;

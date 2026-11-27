@@ -9,8 +9,8 @@ const _hoisted_3 = { class: "loyalty-expanded-profile__figure" }
 const _hoisted_4 = ["src"]
 const _hoisted_5 = { class: "text-header-3xs" }
 const _hoisted_6 = ["src"]
-const _hoisted_7 = { class: "loyalty-expanded-profile__name-row" }
-const _hoisted_8 = { class: "loyalty-expanded-profile__name text-header-xs" }
+const _hoisted_7 = { class: "loyalty-expanded-profile__name text-header-xs" }
+const _hoisted_8 = { class: "loyalty-expanded-profile__level-row" }
 const _hoisted_9 = { class: "loyalty-expanded-profile__level text-label-xs" }
 const _hoisted_10 = ["src", "alt"]
 const _hoisted_11 = { class: "loyalty-expanded-profile__progress" }
@@ -88,13 +88,13 @@ return (_ctx, _cache) => {
           ]),
           _: 1 /* STABLE */
         }, 8 /* PROPS */, ["href", "class"])),
-        _createElementVNode("div", _hoisted_7, [
-          _createElementVNode("p", _hoisted_8, _toDisplayString(_unref(t)('loyaltyWidget.player')), 1 /* TEXT */),
+        _createElementVNode("p", _hoisted_7, _toDisplayString(_unref(t)('loyaltyWidget.player')), 1 /* TEXT */),
+        _createElementVNode("div", _hoisted_8, [
+          _createElementVNode("p", _hoisted_9, _toDisplayString(_unref(t)('loyaltyWidget.level', { level: props.level })), 1 /* TEXT */),
           _createVNode(LoyaltyVipBadge, {
             level: props.level
           }, null, 8 /* PROPS */, ["level"])
-        ]),
-        _createElementVNode("p", _hoisted_9, _toDisplayString(_unref(t)('loyaltyWidget.level', { level: props.level })), 1 /* TEXT */)
+        ])
       ]),
       _createElementVNode("img", {
         class: "loyalty-expanded-profile__info",

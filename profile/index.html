@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="./app/components/LoyaltyRanking.vue.css?rev=level-ranking">
 <link rel="stylesheet" href="./app/components/LoyaltyVipBadge.vue.css?rev=vip-levels">
 <link rel="stylesheet" href="./app/components/LoyaltyAvatar.vue.css?rev=games-levels">
-<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=level-ranking">
+<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=vip-placement">
 <link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=level-ranking">
 <link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
@@ -35,7 +35,7 @@ try {
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
   setMessages((await import("./app/i18n/ru.js?rev=level-ranking")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=level-ranking")).default;
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=vip-placement")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
   const animations = new Set(['cart', 'chips', 'gifts', 'chest']);
   const sizes = new Set(['md', 'lg']);

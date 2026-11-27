@@ -87,7 +87,7 @@ const questArtwork = new URL("../assets/quest-artwork-transparent.png", import.m
 const temple = new URL("../assets/temple.png", import.meta.url).href;
 const topGlow = new URL("../assets/top-glow.svg", import.meta.url).href;
 import LoyaltyAvatar from "./LoyaltyAvatar.vue.js?rev=games-levels";
-import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=level-ranking";
+import LoyaltyExpandedProfile from "./LoyaltyExpandedProfile.vue.js?rev=vip-placement";
 import LoyaltyRanking from "./LoyaltyRanking.vue.js?rev=level-ranking";
 import LoyaltyVipBadge from "./LoyaltyVipBadge.vue.js?rev=vip-levels";
 
