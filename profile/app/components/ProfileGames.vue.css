@@ -1,0 +1,91 @@
+.profile-games {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: var(--gap-xl);
+  margin-inline: calc(-1 * var(--padding-sm));
+  padding: var(--padding-sm) var(--padding-sm) 0;
+  background-image: var(--color-styles-gradient-surface-section-default);
+}
+.profile-games__header, .profile-games__heading, .profile-games__actions, .profile-games__caption {
+  display: flex;
+  align-items: center;
+}
+.profile-games__header {
+  justify-content: space-between;
+  gap: var(--gap-xs);
+}
+.profile-games__heading {
+  min-width: 0;
+  gap: var(--gap-md);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.profile-games__icon {
+  display: grid;
+  flex: 0 0 var(--size-icon-md);
+  place-items: center;
+}
+.profile-games__actions {
+  flex-shrink: 0;
+  gap: var(--gap-xs);
+}
+.profile-games__list {
+  position: relative;
+  display: flex;
+  gap: var(--gap-lg);
+  margin: 0 calc(-1 * var(--padding-sm)) 0 0;
+  padding: 0 var(--padding-sm) 0 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+.profile-games__list:focus-visible {
+  outline: var(--border-width-sm) solid var(--color-border-interactive-focus);
+}
+.profile-games__list_all {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+.profile-games__card {
+  display: grid;
+  flex: 0 0 calc((100% - var(--gap-lg) - var(--gap-md)) / 2);
+  min-width: 0;
+  gap: var(--gap-xs);
+  scroll-snap-align: start;
+}
+.profile-games__cover {
+  position: relative;
+  aspect-ratio: 217/145;
+  overflow: hidden;
+  border-radius: var(--game-card-border-radius);
+}
+.profile-games__cover > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-games__badges {
+  position: absolute;
+  inset: 0 auto auto 0;
+  display: grid;
+  gap: var(--tag-gap);
+  padding: var(--tag-gap) 0 0 var(--tag-gap);
+}
+.profile-games__caption {
+  justify-content: space-between;
+  gap: var(--gap-md);
+}
+.profile-games__name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

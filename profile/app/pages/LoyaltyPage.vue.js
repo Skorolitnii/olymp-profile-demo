@@ -7,9 +7,10 @@ const _hoisted_1 = {
 }
 const _hoisted_2 = { class: "loyalty-page__body" }
 
-import { onMounted, onUnmounted, ref } from 'vue'
-import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=lg-artwork";
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=games-levels";
 import ProfileBalance from "../components/ProfileBalance.vue.js";
+import ProfileGames from "../components/ProfileGames.vue.js?rev=games-levels";
 import ProfileMenu from "../components/ProfileMenu.vue.js";
 import ProfileNavbar from "../components/ProfileNavbar.vue.js";
 
@@ -18,6 +19,7 @@ export default {
   __name: 'LoyaltyPage',
   props: {
   version: { type: String, default: 'v1' },
+  level: { type: Number, default: 1 },
   cardSize: { type: String, default: 'md' },
   shopAnimation: { type: String, default: 'cart' },
   links: { type: Object, default: () => ({}) },
@@ -28,6 +30,7 @@ export default {
 const props = __props
 
 const version = ['v1', 'v1.2', 'v2', 'v2.2'].includes(props.version) ? props.version : 'v1'
+const level = computed(() => (Number.isInteger(props.level) && props.level >= 1 && props.level <= 6 ? props.level : 1))
 const header = ref(null)
 let range = 0
 let profileStart = 0
@@ -104,12 +107,13 @@ return (_ctx, _cache) => {
     }, [
       _createVNode(LoyaltyWidget, {
         version: _unref(version),
+        level: level.value,
         "card-size": props.cardSize,
         "shop-animation": props.shopAnimation,
         "program-url": props.links.loyalty,
         "quests-url": props.links.quests,
         "shop-url": props.links.bonusShop
-      }, null, 8 /* PROPS */, ["version", "card-size", "shop-animation", "program-url", "quests-url", "shop-url"])
+      }, null, 8 /* PROPS */, ["version", "level", "card-size", "shop-animation", "program-url", "quests-url", "shop-url"])
     ], 512 /* NEED_PATCH */),
     _createElementVNode("main", _hoisted_2, [
       _createVNode(ProfileBalance, {
@@ -117,7 +121,8 @@ return (_ctx, _cache) => {
       }, null, 8 /* PROPS */, ["links"]),
       _createVNode(ProfileMenu, {
         links: props.links
-      }, null, 8 /* PROPS */, ["links"])
+      }, null, 8 /* PROPS */, ["links"]),
+      _createVNode(ProfileGames)
     ]),
     _createVNode(ProfileNavbar, {
       links: props.navLinks

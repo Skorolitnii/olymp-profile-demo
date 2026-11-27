@@ -75,6 +75,7 @@ body {
 
 .versions__tab:focus-visible,
 .preview-setting__option:focus-visible,
+.preview-setting__select:focus-visible,
 .preview__mobile:focus-visible {
   outline: 2px solid var(--color-border-interactive-focus);
   outline-offset: 2px;
@@ -93,12 +94,35 @@ body {
   max-inline-size: 100%;
 }
 
+.preview__profile-settings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-md) var(--gap-2xl);
+}
+
 .preview-setting {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: var(--gap-xs) var(--gap-md);
+}
+
+.preview-setting__select {
+  min-block-size: calc(var(--size-5xl) + var(--padding-2xs) * 2);
+  min-inline-size: var(--size-6xl);
+  padding-inline: var(--padding-xs);
+  border: 0;
+  border-radius: var(--border-radius-lg);
+  color: var(--color-text-primary);
+  background: var(--color-background-button-secondary-default);
+  font: 600 0.875rem / 1.15 "Olymp Display", "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.preview-setting__select option {
+  background-color: var(--color-background-page-lvl-2);
 }
 
 .preview-setting__label {

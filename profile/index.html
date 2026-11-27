@@ -1,10 +1,12 @@
 <!doctype html><html lang="ru" data-theme="blue" data-ds-marks="off"><head><meta charset="utf-8"><title>Профиль OLYMP</title><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./rt/fonts.css">
 <link rel="stylesheet" href="./rt/base.css">
-<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=expanded-scroll">
-<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=lg-artwork">
+<link rel="stylesheet" href="./app/components/LoyaltyAvatar.vue.css?rev=games-levels">
+<link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=games-levels">
+<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=games-levels">
 <link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
+<link rel="stylesheet" href="./app/components/ProfileGames.vue.css?rev=games-levels">
 <link rel="stylesheet" href="./app/components/ProfileNavbar.vue.css">
 <link rel="stylesheet" href="./app/pages/LoyaltyPage.vue.css?rev=rounded-header">
 <style>html,body{margin:0}
@@ -30,11 +32,12 @@ try {
   const { createVfm } = await import('vue-final-modal');
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
-  setMessages((await import("./app/i18n/ru.js")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=lg-artwork")).default;
+  setMessages((await import("./app/i18n/ru.js?rev=games-levels")).default);
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=games-levels")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
   const animations = new Set(['cart', 'chips', 'gifts', 'chest']);
   const sizes = new Set(['md', 'lg']);
+  const levels = new Set(['1', '2', '3', '4', '5', '6']);
   const params = new URLSearchParams(location.search);
   const requestedVersion = params.get('version');
   const version = shallowRef(versions.has(requestedVersion) ? requestedVersion : 'v1');
@@ -42,8 +45,10 @@ try {
   const shopAnimation = shallowRef(animations.has(requestedAnimation) ? requestedAnimation : 'cart');
   const requestedSize = params.get('size');
   const cardSize = shallowRef(sizes.has(requestedSize) ? requestedSize : 'md');
+  const requestedLevel = params.get('level');
+  const level = shallowRef(levels.has(requestedLevel) ? requestedLevel : '1');
   const app = createApp({ render: () => h(Entry, {
-    key: version.value, version: version.value, shopAnimation: shopAnimation.value, cardSize: cardSize.value,
+    key: version.value, version: version.value, shopAnimation: shopAnimation.value, cardSize: cardSize.value, level: Number(level.value),
   }) });
   app.config.errorHandler = fail;
   app.use(createVfm());
@@ -61,11 +66,12 @@ try {
     window.addEventListener('message', (event) => {
       if (event.origin !== location.origin || event.source !== window.parent) return;
       const message = event.data;
-      if (message?.type !== 'olymp:profile-selection' || !versions.has(message.version) || !animations.has(message.animation) || !sizes.has(message.size)) return;
-      if (version.value !== message.version || shopAnimation.value !== message.animation || cardSize.value !== message.size) window.scrollTo(0, 0);
+      if (message?.type !== 'olymp:profile-selection' || !versions.has(message.version) || !animations.has(message.animation) || !sizes.has(message.size) || !levels.has(message.level)) return;
+      if (version.value !== message.version || shopAnimation.value !== message.animation || cardSize.value !== message.size || level.value !== message.level) window.scrollTo(0, 0);
       version.value = message.version;
       shopAnimation.value = message.animation;
       cardSize.value = message.size;
+      level.value = message.level;
     });
     window.parent.postMessage({ type: 'olymp:profile-ready' }, location.origin);
   }

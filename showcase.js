@@ -2,12 +2,17 @@ const tabList = document.querySelector('.versions')
 const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'))
 const sizeOptions = Array.from(document.querySelectorAll('[data-card-size]'))
 const animationOptions = Array.from(document.querySelectorAll('[data-shop-animation]'))
+const levelSelect = document.querySelector('#loyalty-level')
 const panel = document.querySelector('#version-preview')
 const profileFrame = panel.querySelector('iframe')
 const mobileLink = panel.querySelector('.preview__mobile')
 const profileUrl = new URL(mobileLink.href)
 const profileOrigin = new URL(profileFrame.src).origin
 const requested = new URLSearchParams(location.search)
+const requestedLevel = requested.get('level')
+if (Array.from(levelSelect.options).some((option) => option.value === requestedLevel)) {
+  levelSelect.value = requestedLevel
+}
 let activeVersion = 'v1'
 let activeSize = requested.get('size') === 'lg' ? 'lg' : 'md'
 const requestedAnimation = requested.get('animation')
@@ -21,6 +26,7 @@ function syncPreview() {
     version: activeVersion,
     size: activeSize,
     animation: activeAnimation,
+    level: levelSelect.value,
   }, profileOrigin)
 }
 
@@ -39,6 +45,8 @@ function updatePreview() {
     else url.searchParams.set('size', activeSize)
     if (activeAnimation === 'cart') url.searchParams.delete('animation')
     else url.searchParams.set('animation', activeAnimation)
+    if (levelSelect.value === '1') url.searchParams.delete('level')
+    else url.searchParams.set('level', levelSelect.value)
   }
   mobileLink.href = profileUrl.href
   syncPreview()
@@ -71,6 +79,7 @@ function updatePressedOptions(options, dataKey, value) {
 }
 
 for (const tab of tabs) tab.addEventListener('click', () => selectVersion(tab))
+levelSelect.addEventListener('change', updatePreview)
 for (const option of sizeOptions) {
   option.addEventListener('click', () => {
     activeSize = option.dataset.cardSize

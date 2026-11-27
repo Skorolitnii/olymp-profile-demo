@@ -1,0 +1,33 @@
+.loyalty-avatar {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.loyalty-avatar img {
+  position: absolute;
+  top: 0;
+  left: -41.67%;
+  width: 179.17%;
+  height: 100%;
+  max-width: none;
+}
+.loyalty-avatar[data-level="1"] img {
+  top: -3.49%;
+  left: -45.835%;
+  width: 188.535%;
+  height: 105.24%;
+}
+.loyalty-avatar[data-level="2"] img {
+  left: -40.82%;
+}
+.loyalty-avatar[data-level="3"] img {
+  left: -39.58%;
+}
+.loyalty-avatar[data-level="4"] img {
+  left: -40.97%;
+  width: 177.78%;
+}
+.loyalty-avatar[data-level="6"] img {
+  left: -41.6%;
+  width: 179.04%;
+}

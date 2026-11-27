@@ -2,7 +2,7 @@ export default {
   loyaltyWidget: {
     title: 'Программа лояльности',
     player: 'Нурлан Сабуров',
-    level: '1 уровень',
+    level: '{level} уровень',
     initialExperience: '0 / 2 000 XP',
     expandedReward: '25 FS',
     information: 'Информация о программе лояльности',
@@ -13,7 +13,6 @@ export default {
     quests: 'Задания',
     questProgress: '3/7',
     shop: 'Магазин бонусов',
-    balance: '238',
     balanceUnit: 'OLP',
     hints: {
       tasks: 'Выполняй задания, получай OLP, обменивай их на бонусы',
@@ -35,6 +34,14 @@ export default {
     sections: 'Разделы профиля',
     personalAlert: 'Требуется внимание',
     navigation: 'Основная навигация',
+    games: {
+      heading: 'Рекомендованные',
+      all: 'Все',
+      collapse: 'Свернуть',
+      previous: 'Предыдущая игра',
+      next: 'Следующая игра',
+      favorite: '{game} — избранное',
+    },
     menu: {
       balance: 'Баланс',
       bonuses: 'Бонусы',

@@ -11,18 +11,7 @@
   gap: var(--gap-xl);
 }
 .loyalty-expanded-profile__avatar {
-  position: relative;
   flex: 0 0 var(--size-6xl);
-  aspect-ratio: 1;
-  overflow: hidden;
-}
-.loyalty-expanded-profile__avatar img {
-  position: absolute;
-  top: -3.49%;
-  left: -45.835%;
-  width: 188.535%;
-  height: 105.24%;
-  max-width: none;
 }
 .loyalty-expanded-profile__figure {
   display: grid;
