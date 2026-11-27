@@ -48,12 +48,7 @@ const _hoisted_25 = ["src"]
 const _hoisted_26 = ["src"]
 const _hoisted_27 = ["src"]
 const _hoisted_28 = ["src", "alt"]
-const _hoisted_29 = {
-  class: "loyalty-widget__cart",
-  "data-name": "shop-animation",
-  "data-ds-custom": "shop-animation",
-  "aria-hidden": "true"
-}
+const _hoisted_29 = ["data-animation"]
 const _hoisted_30 = {
   key: 0,
   class: "loyalty-widget__chest"
@@ -322,7 +317,13 @@ return (_ctx, _cache) => {
               alt: _unref(t)('loyaltyWidget.balanceUnit')
             }, null, 8 /* PROPS */, _hoisted_28)
           ], 2 /* CLASS */),
-          _createElementVNode("span", _hoisted_29, [
+          _createElementVNode("span", {
+            class: "loyalty-widget__cart",
+            "data-animation": props.shopAnimation,
+            "data-name": "shop-animation",
+            "data-ds-custom": "shop-animation",
+            "aria-hidden": "true"
+          }, [
             (props.shopAnimation === 'chest')
               ? (_openBlock(), _createElementBlock("span", _hoisted_30, [
                   _createElementVNode("img", {
@@ -342,7 +343,7 @@ return (_ctx, _cache) => {
                   src: shopAnimationSource.value,
                   alt: ""
                 }, null, 8 /* PROPS */, _hoisted_33))
-          ])
+          ], 8 /* PROPS */, _hoisted_29)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"]))
