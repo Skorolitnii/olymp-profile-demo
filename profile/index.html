@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="./rt/fonts.css">
 <link rel="stylesheet" href="./rt/base.css">
 <link rel="stylesheet" href="./app/components/LoyaltyExpandedProfile.vue.css?rev=expanded-scroll">
-<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=chest-frames">
+<link rel="stylesheet" href="./app/components/LoyaltyWidget.vue.css?rev=card-size">
 <link rel="stylesheet" href="./app/components/ProfileBalance.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileMenu.vue.css">
 <link rel="stylesheet" href="./app/components/ProfileNavbar.vue.css">
@@ -31,16 +31,19 @@ try {
   const core = await import('@gamesite/game-core');
   const { setMessages } = await import('vue-i18n');
   setMessages((await import("./app/i18n/ru.js")).default);
-  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=chest-frames")).default;
+  const Entry = (await import("./app/pages/LoyaltyPage.vue.js?rev=card-size")).default;
   const versions = new Set(['v1', 'v1.2', 'v2', 'v2.2']);
   const animations = new Set(['cart', 'chips', 'gifts', 'chest']);
+  const sizes = new Set(['md', 'lg']);
   const params = new URLSearchParams(location.search);
   const requestedVersion = params.get('version');
   const version = shallowRef(versions.has(requestedVersion) ? requestedVersion : 'v1');
   const requestedAnimation = params.get('animation');
   const shopAnimation = shallowRef(animations.has(requestedAnimation) ? requestedAnimation : 'cart');
+  const requestedSize = params.get('size');
+  const cardSize = shallowRef(sizes.has(requestedSize) ? requestedSize : 'md');
   const app = createApp({ render: () => h(Entry, {
-    key: version.value, version: version.value, shopAnimation: shopAnimation.value,
+    key: version.value, version: version.value, shopAnimation: shopAnimation.value, cardSize: cardSize.value,
   }) });
   app.config.errorHandler = fail;
   app.use(createVfm());
@@ -58,10 +61,11 @@ try {
     window.addEventListener('message', (event) => {
       if (event.origin !== location.origin || event.source !== window.parent) return;
       const message = event.data;
-      if (message?.type !== 'olymp:profile-selection' || !versions.has(message.version) || !animations.has(message.animation)) return;
-      if (version.value !== message.version || shopAnimation.value !== message.animation) window.scrollTo(0, 0);
+      if (message?.type !== 'olymp:profile-selection' || !versions.has(message.version) || !animations.has(message.animation) || !sizes.has(message.size)) return;
+      if (version.value !== message.version || shopAnimation.value !== message.animation || cardSize.value !== message.size) window.scrollTo(0, 0);
       version.value = message.version;
       shopAnimation.value = message.animation;
+      cardSize.value = message.size;
     });
     window.parent.postMessage({ type: 'olymp:profile-ready' }, location.origin);
   }

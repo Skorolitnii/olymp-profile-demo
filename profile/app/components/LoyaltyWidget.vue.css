@@ -222,6 +222,25 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
 .loyalty-widget__value {
   color: var(--color-text-on-interactive-secondary);
 }
+.loyalty-widget__menu_lg .loyalty-widget__tile {
+  gap: var(--gap-sm);
+}
+.loyalty-widget__menu_lg .loyalty-widget__label {
+  position: relative;
+  z-index: 1;
+  color: var(--color-text-secondary);
+}
+.loyalty-widget__menu_lg .loyalty-widget__value {
+  gap: var(--gap-xs);
+}
+.loyalty-widget__menu_lg .loyalty-widget__quest-artwork {
+  width: auto;
+  height: 100%;
+}
+.loyalty-widget__menu_lg .loyalty-widget__cart {
+  width: calc(var(--layout-width) / 3 * 52 / 46);
+  height: 100%;
+}
 .loyalty-widget__quest-artwork {
   position: absolute;
   inset-block-start: 0;

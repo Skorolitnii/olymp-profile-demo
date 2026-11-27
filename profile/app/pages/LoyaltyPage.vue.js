@@ -8,7 +8,7 @@ const _hoisted_1 = {
 const _hoisted_2 = { class: "loyalty-page__body" }
 
 import { onMounted, onUnmounted, ref } from 'vue'
-import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=chest-frames";
+import LoyaltyWidget from "../components/LoyaltyWidget.vue.js?rev=card-size";
 import ProfileBalance from "../components/ProfileBalance.vue.js";
 import ProfileMenu from "../components/ProfileMenu.vue.js";
 import ProfileNavbar from "../components/ProfileNavbar.vue.js";
@@ -18,6 +18,7 @@ export default {
   __name: 'LoyaltyPage',
   props: {
   version: { type: String, default: 'v1' },
+  cardSize: { type: String, default: 'md' },
   shopAnimation: { type: String, default: 'cart' },
   links: { type: Object, default: () => ({}) },
   navLinks: { type: Object, default: () => ({}) },
@@ -103,11 +104,12 @@ return (_ctx, _cache) => {
     }, [
       _createVNode(LoyaltyWidget, {
         version: _unref(version),
+        "card-size": props.cardSize,
         "shop-animation": props.shopAnimation,
         "program-url": props.links.loyalty,
         "quests-url": props.links.quests,
         "shop-url": props.links.bonusShop
-      }, null, 8 /* PROPS */, ["version", "shop-animation", "program-url", "quests-url", "shop-url"])
+      }, null, 8 /* PROPS */, ["version", "card-size", "shop-animation", "program-url", "quests-url", "shop-url"])
     ], 512 /* NEED_PATCH */),
     _createElementVNode("main", _hoisted_2, [
       _createVNode(ProfileBalance, {

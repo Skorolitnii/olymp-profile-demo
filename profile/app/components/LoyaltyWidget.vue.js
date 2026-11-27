@@ -1,4 +1,4 @@
-import { unref as _unref, createElementVNode as _createElementVNode, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, Fragment as _Fragment, renderList as _renderList, normalizeClass as _normalizeClass } from "vue"
+import { unref as _unref, createElementVNode as _createElementVNode, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, toDisplayString as _toDisplayString, resolveDynamicComponent as _resolveDynamicComponent, withCtx as _withCtx, createBlock as _createBlock, createTextVNode as _createTextVNode, Fragment as _Fragment, normalizeClass as _normalizeClass, renderList as _renderList } from "vue"
 
 const _hoisted_1 = ["data-version", "aria-label"]
 const _hoisted_2 = {
@@ -45,38 +45,30 @@ const _hoisted_22 = { class: "loyalty-widget__reward-value text-header-3xs" }
 const _hoisted_23 = ["aria-label"]
 const _hoisted_24 = ["src"]
 const _hoisted_25 = ["src"]
-const _hoisted_26 = {
-  class: "loyalty-widget__menu",
-  "data-name": "loyalty-menu"
-}
-const _hoisted_27 = { class: "loyalty-widget__label text-label-xs" }
-const _hoisted_28 = { class: "loyalty-widget__value text-header-xs" }
-const _hoisted_29 = ["src"]
-const _hoisted_30 = ["src"]
-const _hoisted_31 = { class: "loyalty-widget__label text-label-xs" }
-const _hoisted_32 = { class: "loyalty-widget__value text-header-xs" }
-const _hoisted_33 = ["src", "alt"]
-const _hoisted_34 = {
+const _hoisted_26 = ["src"]
+const _hoisted_27 = ["src"]
+const _hoisted_28 = ["src", "alt"]
+const _hoisted_29 = {
   class: "loyalty-widget__cart",
   "data-name": "shop-animation",
   "data-ds-custom": "shop-animation",
   "aria-hidden": "true"
 }
-const _hoisted_35 = {
+const _hoisted_30 = {
   key: 0,
   class: "loyalty-widget__chest"
 }
-const _hoisted_36 = ["src"]
-const _hoisted_37 = ["src"]
-const _hoisted_38 = ["src"]
-const _hoisted_39 = {
+const _hoisted_31 = ["src"]
+const _hoisted_32 = ["src"]
+const _hoisted_33 = ["src"]
+const _hoisted_34 = {
   class: "loyalty-widget__hint text-label-xs",
   "data-name": "loyalty-hint",
   "data-ds-new": "loyalty-hint",
   "data-ds-custom": "hint-transition"
 }
-const _hoisted_40 = ["src"]
-const _hoisted_41 = ["aria-hidden"]
+const _hoisted_35 = ["src"]
+const _hoisted_36 = ["aria-hidden"]
 
 import { computed, onMounted, onUnmounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -106,6 +98,7 @@ export default {
   __name: 'LoyaltyWidget',
   props: {
   version: { type: String, default: 'v1' },
+  cardSize: { type: String, default: 'md' },
   shopAnimation: { type: String, default: 'cart' },
   programUrl: { type: String, default: '' },
   questsUrl: { type: String, default: '' },
@@ -117,6 +110,9 @@ const props = __props
 
 const { t } = useI18n()
 const isExpanded = computed(() => props.version === 'v2' || props.version === 'v2.2')
+const isLarge = computed(() => props.cardSize === 'lg')
+const labelTypography = computed(() => (isLarge.value ? 'text-label-sm' : 'text-label-xs'))
+const valueTypography = computed(() => (isLarge.value ? 'text-header-sm' : 'text-header-xs'))
 const animationId = useId()
 const animationRun = ref(0)
 const shopAnimationAssets = new Map([
@@ -276,7 +272,10 @@ return (_ctx, _cache) => {
             ])
           ])
         ], 64 /* STABLE_FRAGMENT */)),
-    _createElementVNode("div", _hoisted_26, [
+    _createElementVNode("div", {
+      class: _normalizeClass(["loyalty-widget__menu", { 'loyalty-widget__menu_lg': isLarge.value }]),
+      "data-name": "loyalty-menu"
+    }, [
       (_openBlock(), _createBlock(_resolveDynamicComponent(props.questsUrl ? 'a' : 'div'), {
         href: props.questsUrl || undefined,
         class: "loyalty-widget__tile",
@@ -284,19 +283,23 @@ return (_ctx, _cache) => {
         "data-ds-new": "loyalty-menu-tile"
       }, {
         default: _withCtx(() => [
-          _createElementVNode("span", _hoisted_27, _toDisplayString(_unref(t)('loyaltyWidget.quests')), 1 /* TEXT */),
-          _createElementVNode("span", _hoisted_28, [
+          _createElementVNode("span", {
+            class: _normalizeClass(["loyalty-widget__label", labelTypography.value])
+          }, _toDisplayString(_unref(t)('loyaltyWidget.quests')), 3 /* TEXT, CLASS */),
+          _createElementVNode("span", {
+            class: _normalizeClass(["loyalty-widget__value", valueTypography.value])
+          }, [
             _createElementVNode("img", {
               src: _unref(missionProgress),
               alt: ""
-            }, null, 8 /* PROPS */, _hoisted_29),
+            }, null, 8 /* PROPS */, _hoisted_26),
             _createTextVNode(" " + _toDisplayString(_unref(t)('loyaltyWidget.questProgress')), 1 /* TEXT */)
-          ]),
+          ], 2 /* CLASS */),
           _createElementVNode("img", {
             class: "loyalty-widget__quest-artwork",
             src: _unref(questArtwork),
             alt: ""
-          }, null, 8 /* PROPS */, _hoisted_30)
+          }, null, 8 /* PROPS */, _hoisted_27)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"])),
@@ -307,51 +310,55 @@ return (_ctx, _cache) => {
         "data-ds-new": "loyalty-menu-tile"
       }, {
         default: _withCtx(() => [
-          _createElementVNode("span", _hoisted_31, _toDisplayString(_unref(t)('loyaltyWidget.shop')), 1 /* TEXT */),
-          _createElementVNode("span", _hoisted_32, [
+          _createElementVNode("span", {
+            class: _normalizeClass(["loyalty-widget__label", labelTypography.value])
+          }, _toDisplayString(_unref(t)('loyaltyWidget.shop')), 3 /* TEXT, CLASS */),
+          _createElementVNode("span", {
+            class: _normalizeClass(["loyalty-widget__value", valueTypography.value])
+          }, [
             _createTextVNode(_toDisplayString(_unref(t)('loyaltyWidget.balance')) + " ", 1 /* TEXT */),
             _createElementVNode("img", {
               src: _unref(olpCoin),
               alt: _unref(t)('loyaltyWidget.balanceUnit')
-            }, null, 8 /* PROPS */, _hoisted_33)
-          ]),
-          _createElementVNode("span", _hoisted_34, [
+            }, null, 8 /* PROPS */, _hoisted_28)
+          ], 2 /* CLASS */),
+          _createElementVNode("span", _hoisted_29, [
             (props.shopAnimation === 'chest')
-              ? (_openBlock(), _createElementBlock("span", _hoisted_35, [
+              ? (_openBlock(), _createElementBlock("span", _hoisted_30, [
                   _createElementVNode("img", {
                     class: "loyalty-widget__chest-frames",
                     src: _unref(chestFrames),
                     alt: "",
                     onLoad: startChestAnimation
-                  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_36),
+                  }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_31),
                   _createElementVNode("img", {
                     class: "loyalty-widget__chest-glow",
                     src: _unref(chestGlow),
                     alt: ""
-                  }, null, 8 /* PROPS */, _hoisted_37)
+                  }, null, 8 /* PROPS */, _hoisted_32)
                 ]))
               : (_openBlock(), _createElementBlock("img", {
                   key: props.shopAnimation,
                   src: shopAnimationSource.value,
                   alt: ""
-                }, null, 8 /* PROPS */, _hoisted_38))
+                }, null, 8 /* PROPS */, _hoisted_33))
           ])
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["href"]))
-    ]),
-    _createElementVNode("p", _hoisted_39, [
+    ], 2 /* CLASS */),
+    _createElementVNode("p", _hoisted_34, [
       _createElementVNode("img", {
         class: "loyalty-widget__hint-icon",
         src: _unref(hintIcon),
         alt: ""
-      }, null, 8 /* PROPS */, _hoisted_40),
+      }, null, 8 /* PROPS */, _hoisted_35),
       (_openBlock(), _createElementBlock(_Fragment, null, _renderList(hintKeys, (key, index) => {
         return _createElementVNode("span", {
           key: key,
           class: _normalizeClass(["loyalty-widget__hint-text", { 'loyalty-widget__hint-text_active': index === activeHintIndex.value }]),
           "aria-hidden": index !== activeHintIndex.value || undefined
-        }, _toDisplayString(_unref(t)(`loyaltyWidget.hints.${key}`)), 11 /* TEXT, CLASS, PROPS */, _hoisted_41)
+        }, _toDisplayString(_unref(t)(`loyaltyWidget.hints.${key}`)), 11 /* TEXT, CLASS, PROPS */, _hoisted_36)
       }), 64 /* STABLE_FRAGMENT */))
     ])
   ], 10 /* CLASS, PROPS */, _hoisted_1))

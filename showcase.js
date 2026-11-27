@@ -1,5 +1,6 @@
 const tabList = document.querySelector('.versions')
 const tabs = Array.from(tabList.querySelectorAll('[role="tab"]'))
+const sizeOptions = Array.from(document.querySelectorAll('[data-card-size]'))
 const animationOptions = Array.from(document.querySelectorAll('[data-shop-animation]'))
 const panel = document.querySelector('#version-preview')
 const profileFrame = panel.querySelector('iframe')
@@ -8,6 +9,7 @@ const profileUrl = new URL(mobileLink.href)
 const profileOrigin = new URL(profileFrame.src).origin
 const requested = new URLSearchParams(location.search)
 let activeVersion = 'v1'
+let activeSize = requested.get('size') === 'lg' ? 'lg' : 'md'
 const requestedAnimation = requested.get('animation')
 let activeAnimation = animationOptions.some((option) => option.dataset.shopAnimation === requestedAnimation)
   ? requestedAnimation
@@ -17,6 +19,7 @@ function syncPreview() {
   profileFrame.contentWindow?.postMessage({
     type: 'olymp:profile-selection',
     version: activeVersion,
+    size: activeSize,
     animation: activeAnimation,
   }, profileOrigin)
 }
@@ -32,6 +35,8 @@ function updatePreview() {
   for (const url of [pageUrl, profileUrl]) {
     if (activeVersion === 'v1') url.searchParams.delete('version')
     else url.searchParams.set('version', activeVersion)
+    if (activeSize === 'md') url.searchParams.delete('size')
+    else url.searchParams.set('size', activeSize)
     if (activeAnimation === 'cart') url.searchParams.delete('animation')
     else url.searchParams.set('animation', activeAnimation)
   }
@@ -59,17 +64,24 @@ function selectVersion(tab, focus = false) {
   updatePreview()
 }
 
-function updateAnimationOptions() {
-  for (const option of animationOptions) {
-    option.setAttribute('aria-pressed', String(option.dataset.shopAnimation === activeAnimation))
+function updatePressedOptions(options, dataKey, value) {
+  for (const option of options) {
+    option.setAttribute('aria-pressed', String(option.dataset[dataKey] === value))
   }
 }
 
 for (const tab of tabs) tab.addEventListener('click', () => selectVersion(tab))
+for (const option of sizeOptions) {
+  option.addEventListener('click', () => {
+    activeSize = option.dataset.cardSize
+    updatePressedOptions(sizeOptions, 'cardSize', activeSize)
+    updatePreview()
+  })
+}
 for (const option of animationOptions) {
   option.addEventListener('click', () => {
     activeAnimation = option.dataset.shopAnimation
-    updateAnimationOptions()
+    updatePressedOptions(animationOptions, 'shopAnimation', activeAnimation)
     updatePreview()
   })
 }
@@ -90,5 +102,6 @@ tabList.addEventListener('keydown', (event) => {
   selectVersion(tabs[next], true)
 })
 
-updateAnimationOptions()
+updatePressedOptions(sizeOptions, 'cardSize', activeSize)
+updatePressedOptions(animationOptions, 'shopAnimation', activeAnimation)
 selectVersion(tabs.find((tab) => tab.dataset.version === requested.get('version')) || tabs[0])
