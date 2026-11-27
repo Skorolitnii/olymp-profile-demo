@@ -284,7 +284,7 @@ a:is(.loyalty-widget__program, .loyalty-widget__tile):focus-visible {
   width: max-content;
   aspect-ratio: 1;
   overflow: hidden;
-  transform: translate(var(--gap-lg), calc(-1 * var(--size-4xl))) scale(0.37);
+  transform: translate(var(--gap-lg), calc(-1 * (var(--size-4xl) + var(--gap-xs)))) scale(0.37);
   transform-origin: top left;
 }
 .loyalty-widget__menu_lg .loyalty-widget__chest {
