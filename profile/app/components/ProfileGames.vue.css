@@ -12,14 +12,14 @@
   align-items: center;
 }
 .profile-games__header {
-  justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--gap-xs);
 }
 .profile-games__heading {
   min-width: 0;
   gap: var(--gap-md);
   margin: 0;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 .profile-games__icon {
   display: grid;
@@ -29,6 +29,7 @@
 .profile-games__actions {
   flex-shrink: 0;
   gap: var(--gap-xs);
+  margin-inline-start: auto;
 }
 .profile-games__list {
   position: relative;
@@ -54,6 +55,8 @@
 }
 .profile-games__card {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
   flex: 0 0 calc((100% - var(--gap-lg) - var(--gap-md)) / 2);
   min-width: 0;
   gap: var(--gap-xs);
@@ -66,6 +69,8 @@
   border-radius: var(--game-card-border-radius);
 }
 .profile-games__cover > img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
